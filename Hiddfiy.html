@@ -5,15 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>دانلود Hiddify VPN</title>
 <style>
-  /* ===================== Reset & Body ===================== */
-  * {box-sizing: border-box; margin:0; padding:0;}
+  * { box-sizing:border-box; margin:0; padding:0; }
   body {
     font-family: "Tahoma", Arial, sans-serif;
     background: url("./Hiddfiy_P.jpg") no-repeat center center fixed;
     background-size: cover;
     color: #fff;
     direction: rtl;
-    overflow-x: hidden;
   }
   header {
     position: sticky; top:0; z-index:1000;
@@ -27,9 +25,7 @@
   header nav a:hover { text-decoration: underline; }
   .container { max-width: 1100px; margin: 20px auto; padding:20px;}
   h1, h2 { text-align:center; margin-bottom:15px; }
-
-  /* ===================== Glass Cards ===================== */
-  .cards { display: flex; flex-wrap: wrap; justify-content: center; gap:20px; }
+  .cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
   .card {
     background: rgba(255,255,255,0.05);
     border-radius: 15px;
@@ -39,12 +35,8 @@
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
   }
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  }
+  .card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
   .card img { width:80px; margin-bottom:10px; }
-
   select { width: 90%; padding:8px; margin:10px 0; border-radius:8px; border:none; font-size:16px; }
   button.download-btn {
     padding:10px 20px; border:none; border-radius:10px;
@@ -52,15 +44,12 @@
     cursor:pointer; transition: 0.3s;
   }
   button.download-btn:hover { background:#76ff03; }
-
   footer {
     text-align:center; padding:15px; margin-top:30px;
     background: rgba(0,0,0,0.7); border-radius:10px;
   }
   footer a { color:#00b0ff; font-weight:bold; text-decoration:none; }
   footer a:hover { text-decoration: underline; }
-
-  /* Animation Fade-in */
   .fade-in { animation: fadeIn 1s ease forwards; opacity:0; }
   @keyframes fadeIn { to { opacity:1; } }
 </style>
@@ -130,6 +119,7 @@
 
 <script>
 let androidFiles=[], windowsFiles=[], macFiles=[], linuxFiles=[];
+let androidVersions=[], windowsVersions=[], macVersions=[], linuxVersions=[];
 
 async function loadReleases() {
   try {
@@ -138,31 +128,39 @@ async function loadReleases() {
 
     releases.forEach(rel => {
       rel.assets.forEach(asset => {
-        if(asset.name.endsWith(".apk")) androidFiles.push(asset);
-        else if(asset.name.endsWith(".exe") || asset.name.toLowerCase().includes("windows")) windowsFiles.push(asset);
-        else if(asset.name.endsWith(".dmg") || asset.name.toLowerCase().includes("mac")) macFiles.push(asset);
-        else if(asset.name.endsWith(".AppImage") || asset.name.endsWith(".deb") || asset.name.endsWith(".rpm") || asset.name.toLowerCase().includes("linux")) linuxFiles.push(asset);
+        const name = asset.name.toLowerCase();
+        // دسته‌بندی فایل‌ها بر اساس سیستم عامل
+        if(name.endsWith(".apk")) androidFiles.push(asset);
+        else if(name.endsWith(".exe") || name.includes("windows")) windowsFiles.push(asset);
+        else if(name.endsWith(".dmg") || name.includes("mac")) macFiles.push(asset);
+        else if(name.endsWith(".appimage") || name.endsWith(".deb") || name.endsWith(".rpm") || name.includes("linux")) linuxFiles.push(asset);
       });
     });
 
-    populateSelect("android-version", androidFiles);
-    populateSelect("windows-version", windowsFiles);
-    populateSelect("mac-version", macFiles);
-    populateSelect("linux-version", linuxFiles);
+    populateVersions("android", androidFiles);
+    populateVersions("windows", windowsFiles);
+    populateVersions("mac", macFiles);
+    populateVersions("linux", linuxFiles);
 
   } catch(err) {
     alert("خطا در دریافت داده‌ها از GitHub");
   }
 }
 
-function populateSelect(selectId, files) {
-  const sel = document.getElementById(selectId);
-  sel.innerHTML="";
+function populateVersions(os, files) {
+  const select = document.getElementById(os+"-version");
+  select.innerHTML="";
+  const versionsSet = new Set();
   files.forEach(f=>{
+    const verMatch = f.name.match(/(\d+\.\d+\.\d+)/);
+    if(verMatch) versionsSet.add(verMatch[0]);
+  });
+  const versions = Array.from(versionsSet).sort((a,b)=>b.localeCompare(a)); // جدیدترین بالای لیست
+  versions.forEach(v=>{
     const opt = document.createElement("option");
-    opt.value = f.browser_download_url;
-    opt.text = f.name;
-    sel.appendChild(opt);
+    opt.value = v;
+    opt.text = v;
+    select.appendChild(opt);
   });
 }
 
@@ -170,21 +168,34 @@ function populateSelect(selectId, files) {
 function downloadAndroid(){
   const version = document.getElementById("android-version").value;
   const arch = document.getElementById("android-arch").value;
-  let url = version;
-  // اگر بخوای براساس معماری هم تغییر بدی، می‌توان اینجا فیلتر کنی
-  window.open(url,"_blank");
+  const file = androidFiles.find(f=>{
+    if(!f.name.includes(version)) return false;
+    if(arch==="universal") return true;
+    return f.name.toLowerCase().includes(arch);
+  });
+  if(file) window.open(file.browser_download_url,"_blank");
+  else alert("فایلی برای این نسخه/معماری پیدا نشد");
 }
+
 function downloadWindows(){
-  const url = document.getElementById("windows-version").value;
-  window.open(url,"_blank");
+  const version = document.getElementById("windows-version").value;
+  const file = windowsFiles.find(f=>f.name.includes(version));
+  if(file) window.open(file.browser_download_url,"_blank");
+  else alert("فایلی برای این نسخه پیدا نشد");
 }
+
 function downloadMac(){
-  const url = document.getElementById("mac-version").value;
-  window.open(url,"_blank");
+  const version = document.getElementById("mac-version").value;
+  const file = macFiles.find(f=>f.name.includes(version));
+  if(file) window.open(file.browser_download_url,"_blank");
+  else alert("فایلی برای این نسخه پیدا نشد");
 }
+
 function downloadLinux(){
-  const url = document.getElementById("linux-version").value;
-  window.open(url,"_blank");
+  const version = document.getElementById("linux-version").value;
+  const file = linuxFiles.find(f=>f.name.includes(version));
+  if(file) window.open(file.browser_download_url,"_blank");
+  else alert("فایلی برای این نسخه پیدا نشد");
 }
 
 loadReleases();
