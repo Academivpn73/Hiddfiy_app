@@ -1,192 +1,85 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>دانلود Hiddify VPN</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Vazir, Arial, sans-serif;
+      background: url("./Hiddfiy_P.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      text-align: center;
+    }
+    .container {
+      background: rgba(0,0,0,0.6);
+      border-radius: 15px;
+      padding: 30px;
+      margin: 50px auto;
+      width: 90%;
+      max-width: 600px;
+    }
+    a.download-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #4CAF50;
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+    a.download-btn:hover {
+      background: #45a049;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+    }
+    footer a {
+      color: #00e5ff;
+      text-decoration: none;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
-
-  <!-- هدر -->
-  <header class="text-center py-8">
-    <h1 class="text-4xl font-extrabold mb-2">دانلود Hiddify VPN</h1>
-    <p class="text-gray-400 mb-2">انتخاب کن و نسخه مناسب دستگاهت رو دانلود کن 🚀</p>
-    <p class="text-gray-400">
-      Telegram:
-      <a href="https://t.me/Academii73" class="text-blue-400 hover:underline" target="_blank">
-        @Academii73
-      </a>
-    </p>
-  </header>
-
-  <!-- دکمه دانلود خودکار -->
-  <div class="text-center my-6">
-    <button onclick="autoDownload()" 
-            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg">
-      ⚡ دانلود خودکار برای دستگاه من
-    </button>
+<body>
+  <div class="container">
+    <h1>دانلود آخرین نسخه Hiddify VPN</h1>
+    <p>این صفحه همیشه آخرین نسخه را از GitHub دریافت می‌کند.</p>
+    <div id="download">
+      <p>در حال بارگذاری لینک دانلود...</p>
+    </div>
+    <footer>
+      <p>
+        لینک اصلی پروژه در گیت‌هاب: 
+        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">
+          Hiddify GitHub Releases
+        </a>
+      </p>
+    </footer>
   </div>
 
-  <!-- بخش‌ها -->
-  <main class="max-w-3xl mx-auto px-4">
-    
-    <!-- اندروید -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-4">📱 نسخه اندروید</h2>
-      <div id="android-versions" class="space-y-4"></div>
-    </section>
-
-    <!-- ویندوز -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-4">💻 نسخه ویندوز</h2>
-      <div id="windows-versions" class="space-y-4"></div>
-    </section>
-
-    <!-- مک -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-4">🍏 نسخه مک</h2>
-      <div id="mac-versions" class="space-y-4"></div>
-    </section>
-
-    <!-- لینوکس -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-4">🐧 نسخه لینوکس</h2>
-      <div id="linux-versions" class="space-y-4"></div>
-    </section>
-
-    <!-- iOS -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-4">📱 نسخه iOS</h2>
-      <div class="text-gray-400">
-        برای iOS از App Store استفاده کنید: 
-        <a href="https://apps.apple.com/us/app/hiddify/id6476444277" target="_blank" 
-           class="text-blue-400 hover:underline">باز کردن در App Store</a>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- راهنما -->
-  <div class="max-w-3xl mx-auto px-4 mt-8 text-gray-400 text-sm leading-6">
-    📌 <span class="font-bold text-white">راهنمای انتخاب نسخه اندروید:</span><br>
-    ▪️ گوشی‌های جدید اندروید (۲۰۱۹ به بعد) از <span class="text-green-400 font-bold">arm64-v8a</span> استفاده می‌کنند.<br>
-    ▪️ گوشی‌های قدیمی‌تر معمولاً <span class="text-yellow-400 font-bold">armeabi-v7a</span> هستند.<br>
-    ▪️ اگر مطمئن نیستید، نسخه <span class="text-blue-400 font-bold">universal</span> را دانلود کنید.<br>
-    🔍 برای فهمیدن دقیق: وارد <span class="text-blue-400">تنظیمات</span> → <span class="text-blue-400">درباره تلفن</span> شوید.<br>
-    اگر باز هم شک داشتید، در تلگرام بپرسید:  
-    <a href="https://t.me/Academii73" class="text-blue-400 hover:underline">@Academii73</a>
-  </div>
-
-  <!-- فوتر -->
-  <footer class="text-center py-6 mt-10 border-t border-gray-700 text-gray-400">
-    <p>ساخته شده توسط <span class="text-blue-400">@Academii73</span></p>
-    <p>
-      این صفحه آخرین نسخه را از 
-      <a href="https://github.com/hiddify/hiddify-app/releases" 
-         class="text-blue-400 hover:underline" target="_blank">صفحه ریلیزهای GitHub</a> 
-      دریافت می‌کند.
-    </p>
-  </footer>
-
-  <!-- اسکریپت -->
   <script>
-    const repo = "hiddify/hiddify-app";
-
-    // لیست دستی برای هر پلتفرم
-    async function fetchReleases(device) {
-      let url = `https://api.github.com/repos/${repo}/releases`;
-      let container = document.getElementById(`${device}-versions`);
-      container.innerHTML = "⏳ در حال دریافت نسخه‌ها...";
-
+    async function getLatestRelease() {
       try {
-        let res = await fetch(url);
-        let data = await res.json();
-        let html = "";
-
-        data.slice(0, 5).forEach((release, idx) => {
-          let version = release.tag_name;
-          let assets = release.assets;
-
-          // فیلتر فایل‌ها بر اساس پلتفرم
-          if (device === "android") {
-            assets = assets.filter(a => 
-              a.name.includes("arm64-v8a") ||
-              a.name.includes("armeabi-v7a") ||
-              a.name.includes("universal")
-            );
-          } else if (device === "windows") {
-            assets = assets.filter(a => a.name.endsWith(".zip"));
-          } else if (device === "mac") {
-            assets = assets.filter(a => a.name.endsWith(".dmg") || a.name.endsWith(".pkg"));
-          } else if (device === "linux") {
-            assets = assets.filter(a => a.name.endsWith(".AppImage") || a.name.endsWith(".deb") || a.name.endsWith(".rpm"));
-          }
-
-          if (assets.length > 0) {
-            html += `
-              <div class="bg-gray-700 p-3 my-2 rounded">
-                <h3 class="font-bold mb-2">${version}</h3>
-                <select id="${device}-select-${idx}" class="text-black p-1 rounded w-full mb-2">`;
-
-            assets.forEach(asset => {
-              html += `<option value="${asset.browser_download_url}">${asset.name}</option>`;
-            });
-
-            html += `</select>
-              <button onclick="downloadSelected('${device}-select-${idx}')" 
-                      class="bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded text-white w-full">
-                📥 دانلود
-              </button>
-            </div>`;
-          }
-        });
-
-        container.innerHTML = html || "نسخه‌ای یافت نشد.";
-      } catch (e) {
-        container.innerHTML = "❌ خطا در دریافت نسخه‌ها";
-      }
-    }
-
-    // دانلود دستی
-    function downloadSelected(selectId) {
-      let select = document.getElementById(selectId);
-      let url = select.value;
-      if (url) {
-        window.location.href = url;
-      }
-    }
-
-    // دانلود خودکار
-    async function autoDownload() {
-      let url = `https://api.github.com/repos/${repo}/releases/latest`;
-      try {
-        let res = await fetch(url);
-        let release = await res.json();
-        let assets = release.assets;
-        let ua = navigator.userAgent.toLowerCase();
-        let file;
-
-        if (/android/.test(ua)) {
-          file = assets.find(a => a.name.includes("universal")) ||
-                 assets.find(a => a.name.includes("arm64-v8a")) ||
-                 assets.find(a => a.name.includes("armeabi-v7a"));
-        } else if (/iphone|ipad|ipod/.test(ua)) {
-          window.location.href = "https://apps.apple.com/us/app/hiddify/id6476444277";
-          return;
-        } else if (/win/.test(ua)) {
-          file = assets.find(a => a.name.endsWith(".zip"));
-        } else if (/mac/.test(ua)) {
-          file = assets.find(a => a.name.endsWith(".dmg")) || 
-                 assets.find(a => a.name.endsWith(".pkg"));
-        } else if (/linux/.test(ua)) {
-          file = assets.find(a => a.name.endsWith(".AppImage")) ||
-                 assets.find(a => a.name.endsWith(".deb")) ||
-                 assets.find(a => a.name.endsWith(".rpm"));
-        }
-
-        if (file) {
-          window.location.href = file.browser_download_url;
+        const res = await fetch("https://api.github.com/repos/hiddify/hiddify-next/releases/latest");
+        const data = await res.json();
+        const apk = data.assets.find(asset => asset.name.endsWith(".apk"));
+        if (apk) {
+          document.getElementById("download").innerHTML =
+            `<a class="download-btn" href="${apk.browser_download_url}">دانلود Hiddify VPN (${apk.name})</a>`;
         } else {
-          alert("نسخه مناسب دستگاه شما پیدا نشد. لطفا دستی انتخاب کنید.");
+          document.getElementById("download").innerHTML =
+            "<p>فایل APK پیدا نشد!</p>";
         }
+      } catch (err) {
+        document.getElementById("download").innerHTML =
+          "<p>خطا در دریافت لینک دانلود.</p>";
+      }
+    }
+    getLatestRelease();
+  </script>
+</body>
+</html>
