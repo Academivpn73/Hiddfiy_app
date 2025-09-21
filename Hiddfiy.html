@@ -119,21 +119,22 @@
 
 <script>
 let androidFiles=[], windowsFiles=[], macFiles=[], linuxFiles=[];
-let androidVersions=[], windowsVersions=[], macVersions=[], linuxVersions=[];
 
 async function loadReleases() {
   try {
     const res = await fetch("https://api.github.com/repos/hiddify/hiddify-next/releases");
     const releases = await res.json();
 
-    releases.forEach(rel => {
-      rel.assets.forEach(asset => {
+    androidFiles=[]; windowsFiles=[]; macFiles=[]; linuxFiles=[];
+
+    releases.forEach(rel=>{
+      const version = rel.tag_name;
+      rel.assets.forEach(asset=>{
         const name = asset.name.toLowerCase();
-        // دسته‌بندی فایل‌ها بر اساس سیستم عامل
-        if(name.endsWith(".apk")) androidFiles.push(asset);
-        else if(name.endsWith(".exe") || name.includes("windows")) windowsFiles.push(asset);
-        else if(name.endsWith(".dmg") || name.includes("mac")) macFiles.push(asset);
-        else if(name.endsWith(".appimage") || name.endsWith(".deb") || name.endsWith(".rpm") || name.includes("linux")) linuxFiles.push(asset);
+        if(name.endsWith(".apk")) androidFiles.push({version, url: asset.browser_download_url, name});
+        else if(name.endsWith(".exe") || name.includes("windows")) windowsFiles.push({version, url: asset.browser_download_url, name});
+        else if(name.endsWith(".dmg") || name.includes("mac")) macFiles.push({version, url: asset.browser_download_url, name});
+        else if(name.endsWith(".appimage") || name.endsWith(".deb") || name.endsWith(".rpm") || name.includes("linux")) linuxFiles.push({version, url: asset.browser_download_url, name});
       });
     });
 
@@ -142,20 +143,17 @@ async function loadReleases() {
     populateVersions("mac", macFiles);
     populateVersions("linux", linuxFiles);
 
-  } catch(err) {
+  } catch(err){
     alert("خطا در دریافت داده‌ها از GitHub");
+    console.error(err);
   }
 }
 
-function populateVersions(os, files) {
+function populateVersions(os, files){
   const select = document.getElementById(os+"-version");
-  select.innerHTML="";
-  const versionsSet = new Set();
-  files.forEach(f=>{
-    const verMatch = f.name.match(/(\d+\.\d+\.\d+)/);
-    if(verMatch) versionsSet.add(verMatch[0]);
-  });
-  const versions = Array.from(versionsSet).sort((a,b)=>b.localeCompare(a)); // جدیدترین بالای لیست
+  select.innerHTML = "";
+  const versionsSet = new Set(files.map(f=>f.version));
+  const versions = Array.from(versionsSet).sort((a,b)=>b.localeCompare(a));
   versions.forEach(v=>{
     const opt = document.createElement("option");
     opt.value = v;
@@ -169,32 +167,32 @@ function downloadAndroid(){
   const version = document.getElementById("android-version").value;
   const arch = document.getElementById("android-arch").value;
   const file = androidFiles.find(f=>{
-    if(!f.name.includes(version)) return false;
+    if(f.version!==version) return false;
     if(arch==="universal") return true;
-    return f.name.toLowerCase().includes(arch);
+    return f.name.includes(arch);
   });
-  if(file) window.open(file.browser_download_url,"_blank");
+  if(file) window.open(file.url,"_blank");
   else alert("فایلی برای این نسخه/معماری پیدا نشد");
 }
 
 function downloadWindows(){
   const version = document.getElementById("windows-version").value;
-  const file = windowsFiles.find(f=>f.name.includes(version));
-  if(file) window.open(file.browser_download_url,"_blank");
+  const file = windowsFiles.find(f=>f.version===version);
+  if(file) window.open(file.url,"_blank");
   else alert("فایلی برای این نسخه پیدا نشد");
 }
 
 function downloadMac(){
   const version = document.getElementById("mac-version").value;
-  const file = macFiles.find(f=>f.name.includes(version));
-  if(file) window.open(file.browser_download_url,"_blank");
+  const file = macFiles.find(f=>f.version===version);
+  if(file) window.open(file.url,"_blank");
   else alert("فایلی برای این نسخه پیدا نشد");
 }
 
 function downloadLinux(){
   const version = document.getElementById("linux-version").value;
-  const file = linuxFiles.find(f=>f.name.includes(version));
-  if(file) window.open(file.browser_download_url,"_blank");
+  const file = linuxFiles.find(f=>f.version===version);
+  if(file) window.open(file.url,"_blank");
   else alert("فایلی برای این نسخه پیدا نشد");
 }
 
