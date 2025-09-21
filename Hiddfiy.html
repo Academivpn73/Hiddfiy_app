@@ -12,46 +12,87 @@
       background-size: cover;
       color: #fff;
       text-align: center;
+      direction: rtl;
     }
     .container {
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.65);
       border-radius: 15px;
       padding: 30px;
       margin: 50px auto;
-      width: 90%;
-      max-width: 600px;
+      width: 95%;
+      max-width: 800px;
     }
-    a.download-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: #4CAF50;
-      color: white;
-      font-size: 18px;
-      border-radius: 10px;
+    h1 {
+      margin-bottom: 20px;
+    }
+    .section {
+      margin: 30px 0;
+    }
+    .section h2 {
+      color: #00e5ff;
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin: 8px 0;
+    }
+    a {
+      color: #4CAF50;
       text-decoration: none;
+      font-size: 16px;
     }
-    a.download-btn:hover {
-      background: #45a049;
+    a:hover {
+      color: #76ff03;
     }
     footer {
-      margin-top: 50px;
-      font-size: 14px;
+      margin-top: 40px;
+      font-size: 15px;
     }
     footer a {
-      color: #00e5ff;
+      color: #00b0ff;
       text-decoration: none;
+      font-weight: bold;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>دانلود آخرین نسخه Hiddify VPN</h1>
-    <p>این صفحه همیشه آخرین نسخه را از GitHub دریافت می‌کند.</p>
-    <div id="download">
-      <p>در حال بارگذاری لینک دانلود...</p>
+    <p>این صفحه همیشه آخرین نسخه‌ها را از GitHub دریافت می‌کند.</p>
+
+    <!-- بخش اندروید -->
+    <div class="section">
+      <h2>📱 اندروید</h2>
+      <ul id="android-list"><li>در حال بارگذاری...</li></ul>
     </div>
+
+    <!-- بخش ویندوز -->
+    <div class="section">
+      <h2>💻 ویندوز</h2>
+      <ul id="windows-list"><li>در حال بارگذاری...</li></ul>
+    </div>
+
+    <!-- بخش مک -->
+    <div class="section">
+      <h2>🍎 مک</h2>
+      <ul id="mac-list"><li>در حال بارگذاری...</li></ul>
+    </div>
+
+    <!-- بخش لینوکس -->
+    <div class="section">
+      <h2>🐧 لینوکس</h2>
+      <ul id="linux-list"><li>در حال بارگذاری...</li></ul>
+    </div>
+
     <footer>
+      <p>سازنده: <a href="https://t.me/MahdiAGM0" target="_blank">@MahdiAGM0</a></p>
+      <p>تلگرام: <a href="https://t.me/Academii73" target="_blank">@Academii73</a></p>
       <p>
         لینک اصلی پروژه در گیت‌هاب: 
         <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">
@@ -62,24 +103,59 @@
   </div>
 
   <script>
-    async function getLatestRelease() {
+    async function loadReleases() {
       try {
-        const res = await fetch("https://api.github.com/repos/hiddify/hiddify-next/releases/latest");
-        const data = await res.json();
-        const apk = data.assets.find(asset => asset.name.endsWith(".apk"));
-        if (apk) {
-          document.getElementById("download").innerHTML =
-            `<a class="download-btn" href="${apk.browser_download_url}">دانلود Hiddify VPN (${apk.name})</a>`;
-        } else {
-          document.getElementById("download").innerHTML =
-            "<p>فایل APK پیدا نشد!</p>";
-        }
+        const res = await fetch("https://api.github.com/repos/hiddify/hiddify-next/releases");
+        const releases = await res.json();
+
+        // دسته‌بندی
+        const androidList = document.getElementById("android-list");
+        const windowsList = document.getElementById("windows-list");
+        const macList = document.getElementById("mac-list");
+        const linuxList = document.getElementById("linux-list");
+
+        androidList.innerHTML = "";
+        windowsList.innerHTML = "";
+        macList.innerHTML = "";
+        linuxList.innerHTML = "";
+
+        releases.forEach(rel => {
+          rel.assets.forEach(asset => {
+            const li = document.createElement("li");
+            const link = document.createElement("a");
+            link.href = asset.browser_download_url;
+            link.target = "_blank";
+            link.innerText = `${asset.name} (${(asset.size/1024/1024).toFixed(1)} MB)`;
+
+            li.appendChild(link);
+
+            if (asset.name.endsWith(".apk")) {
+              androidList.appendChild(li);
+            } else if (asset.name.endsWith(".exe") || asset.name.includes("windows")) {
+              windowsList.appendChild(li);
+            } else if (asset.name.endsWith(".dmg") || asset.name.includes("mac")) {
+              macList.appendChild(li);
+            } else if (asset.name.endsWith(".AppImage") || asset.name.endsWith(".deb") || asset.name.endsWith(".rpm") || asset.name.includes("linux")) {
+              linuxList.appendChild(li);
+            }
+          });
+        });
+
+        // اگر لیست خالی بود
+        if (!androidList.hasChildNodes()) androidList.innerHTML = "<li>فایلی موجود نیست.</li>";
+        if (!windowsList.hasChildNodes()) windowsList.innerHTML = "<li>فایلی موجود نیست.</li>";
+        if (!macList.hasChildNodes()) macList.innerHTML = "<li>فایلی موجود نیست.</li>";
+        if (!linuxList.hasChildNodes()) linuxList.innerHTML = "<li>فایلی موجود نیست.</li>";
+
       } catch (err) {
-        document.getElementById("download").innerHTML =
-          "<p>خطا در دریافت لینک دانلود.</p>";
+        document.getElementById("android-list").innerHTML = "<li>خطا در دریافت داده‌ها</li>";
+        document.getElementById("windows-list").innerHTML = "<li>خطا در دریافت داده‌ها</li>";
+        document.getElementById("mac-list").innerHTML = "<li>خطا در دریافت داده‌ها</li>";
+        document.getElementById("linux-list").innerHTML = "<li>خطا در دریافت داده‌ها</li>";
       }
     }
-    getLatestRelease();
+
+    loadReleases();
   </script>
 </body>
 </html>
