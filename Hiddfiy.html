@@ -3,34 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>دانلود Hiddify VPN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: Vazir, Arial, sans-serif;
+      font-family: "Tahoma", Arial, sans-serif;
       background: url("./Hiddfiy_P.jpg") no-repeat center center fixed;
       background-size: cover;
       color: #fff;
-      text-align: center;
       direction: rtl;
     }
-    .container {
-      background: rgba(0,0,0,0.65);
-      border-radius: 15px;
-      padding: 30px;
-      margin: 50px auto;
-      width: 95%;
-      max-width: 800px;
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    h1 {
-      margin-bottom: 20px;
-    }
-    .section {
-      margin: 30px 0;
-    }
-    .section h2 {
+    header nav a {
       color: #00e5ff;
-      margin-bottom: 10px;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    header nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.65);
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 15px;
     }
     ul {
       list-style: none;
@@ -38,18 +49,23 @@
     }
     ul li {
       margin: 8px 0;
+      text-align: center;
     }
-    a {
+    ul li a {
       color: #4CAF50;
       text-decoration: none;
       font-size: 16px;
     }
-    a:hover {
+    ul li a:hover {
       color: #76ff03;
     }
     footer {
-      margin-top: 40px;
+      text-align: center;
+      margin-top: 30px;
+      padding: 15px;
       font-size: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
     }
     footer a {
       color: #00b0ff;
@@ -59,36 +75,44 @@
     footer a:hover {
       text-decoration: underline;
     }
+    section {
+      margin: 40px 0;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <nav>
+      <a href="#android">اندروید</a>
+      <a href="#windows">ویندوز</a>
+      <a href="#mac">مک</a>
+      <a href="#linux">لینوکس</a>
+    </nav>
+  </header>
+
   <div class="container">
     <h1>دانلود آخرین نسخه Hiddify VPN</h1>
-    <p>این صفحه همیشه آخرین نسخه‌ها را از GitHub دریافت می‌کند.</p>
+    <p style="text-align:center;">این صفحه همیشه آخرین نسخه‌ها را از GitHub دریافت می‌کند.</p>
 
-    <!-- بخش اندروید -->
-    <div class="section">
+    <section id="android">
       <h2>📱 اندروید</h2>
       <ul id="android-list"><li>در حال بارگذاری...</li></ul>
-    </div>
+    </section>
 
-    <!-- بخش ویندوز -->
-    <div class="section">
+    <section id="windows">
       <h2>💻 ویندوز</h2>
       <ul id="windows-list"><li>در حال بارگذاری...</li></ul>
-    </div>
+    </section>
 
-    <!-- بخش مک -->
-    <div class="section">
+    <section id="mac">
       <h2>🍎 مک</h2>
       <ul id="mac-list"><li>در حال بارگذاری...</li></ul>
-    </div>
+    </section>
 
-    <!-- بخش لینوکس -->
-    <div class="section">
+    <section id="linux">
       <h2>🐧 لینوکس</h2>
       <ul id="linux-list"><li>در حال بارگذاری...</li></ul>
-    </div>
+    </section>
 
     <footer>
       <p>سازنده: <a href="https://t.me/MahdiAGM0" target="_blank">@MahdiAGM0</a></p>
@@ -131,17 +155,17 @@
 
             if (asset.name.endsWith(".apk")) {
               androidList.appendChild(li);
-            } else if (asset.name.endsWith(".exe") || asset.name.includes("windows")) {
+            } else if (asset.name.endsWith(".exe") || asset.name.toLowerCase().includes("windows")) {
               windowsList.appendChild(li);
-            } else if (asset.name.endsWith(".dmg") || asset.name.includes("mac")) {
+            } else if (asset.name.endsWith(".dmg") || asset.name.toLowerCase().includes("mac")) {
               macList.appendChild(li);
-            } else if (asset.name.endsWith(".AppImage") || asset.name.endsWith(".deb") || asset.name.endsWith(".rpm") || asset.name.includes("linux")) {
+            } else if (asset.name.endsWith(".AppImage") || asset.name.endsWith(".deb") || asset.name.endsWith(".rpm") || asset.name.toLowerCase().includes("linux")) {
               linuxList.appendChild(li);
             }
           });
         });
 
-        // اگر لیست خالی بود
+        // اگه هیچ فایلی پیدا نشد
         if (!androidList.hasChildNodes()) androidList.innerHTML = "<li>فایلی موجود نیست.</li>";
         if (!windowsList.hasChildNodes()) windowsList.innerHTML = "<li>فایلی موجود نیست.</li>";
         if (!macList.hasChildNodes()) macList.innerHTML = "<li>فایلی موجود نیست.</li>";
