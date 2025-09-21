@@ -5,199 +5,159 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>دانلود Hiddify VPN</title>
 <style>
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body {
-    font-family: "Tahoma", Arial, sans-serif;
-    background: url("./Hiddfiy_P.jpg") no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-    direction: rtl;
-  }
-  header {
-    position: sticky; top:0; z-index:1000;
-    background: rgba(0,0,0,0.7);
-    text-align: center; padding: 10px 0;
-  }
-  header nav a {
-    margin: 0 15px; text-decoration:none;
-    color: #00e5ff; font-weight:bold; font-size:18px;
-  }
-  header nav a:hover { text-decoration: underline; }
-  .container { max-width: 1100px; margin: 20px auto; padding:20px;}
-  h1, h2 { text-align:center; margin-bottom:15px; }
-  .cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-  .card {
-    background: rgba(255,255,255,0.05);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    width: 250px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-  .card img { width:80px; margin-bottom:10px; }
-  select { width: 90%; padding:8px; margin:10px 0; border-radius:8px; border:none; font-size:16px; }
-  button.download-btn {
-    padding:10px 20px; border:none; border-radius:10px;
-    background:#4CAF50; color:white; font-size:16px;
-    cursor:pointer; transition: 0.3s;
-  }
-  button.download-btn:hover { background:#76ff03; }
-  footer {
-    text-align:center; padding:15px; margin-top:30px;
-    background: rgba(0,0,0,0.7); border-radius:10px;
-  }
-  footer a { color:#00b0ff; font-weight:bold; text-decoration:none; }
-  footer a:hover { text-decoration: underline; }
-  .fade-in { animation: fadeIn 1s ease forwards; opacity:0; }
-  @keyframes fadeIn { to { opacity:1; } }
+/* CSS مشابه کدی که فرستادیم */
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family: "Tahoma", Arial, sans-serif; background: url("./Hiddfiy_P.jpg") no-repeat center center fixed; background-size: cover; color: #fff; direction: rtl; }
+header { position: sticky; top:0; background: rgba(0,0,0,0.7); text-align: center; padding: 10px 0;}
+header nav a { margin: 0 15px; text-decoration:none; color: #00e5ff; font-weight:bold; font-size:18px;}
+header nav a:hover { text-decoration: underline;}
+.container { max-width: 1100px; margin: 20px auto; padding:20px;}
+h1,h2 { text-align:center; margin-bottom:15px;}
+.auto-download { text-align:center; margin-bottom:20px;}
+.auto-download button { background:#ff9800; border:none; color:white; padding:10px 20px; border-radius:10px; font-size:16px; cursor:pointer;}
+.auto-download button:hover { background:#ffc107; }
+.cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+.card { background: rgba(255,255,255,0.05); border-radius: 15px; backdrop-filter: blur(10px); padding: 20px; width: 250px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+.card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+.card img { width:80px; margin-bottom:10px; }
+select { width: 90%; padding:8px; margin:10px 0; border-radius:8px; border:none; font-size:16px; }
+button.download-btn { padding:10px 20px; border:none; border-radius:10px; background:#4CAF50; color:white; font-size:16px; cursor:pointer; transition: 0.3s;}
+button.download-btn:hover { background:#76ff03;}
+footer { text-align:center; padding:15px; margin-top:30px; background: rgba(0,0,0,0.7); border-radius:10px; }
+footer a { color:#00b0ff; font-weight:bold; text-decoration:none; }
+footer a:hover { text-decoration: underline;}
+.fade-in { animation: fadeIn 1s ease forwards; opacity:0; }
+@keyframes fadeIn { to { opacity:1; } }
+.guide { background: rgba(0,0,0,0.5); padding:20px; border-radius:10px; margin-top:30px; }
+.guide h3 { text-align:center; margin-bottom:10px; }
+.guide p { margin-bottom:10px; line-height:1.6; }
 </style>
 </head>
 <body>
 <header>
-  <nav>
-    <a href="#android">اندروید</a>
-    <a href="#windows">ویندوز</a>
-    <a href="#mac">مک</a>
-    <a href="#linux">لینوکس</a>
-  </nav>
+<nav>
+<a href="#android">اندروید</a>
+<a href="#windows">ویندوز</a>
+<a href="#mac">مک</a>
+<a href="#linux">لینوکس</a>
+</nav>
 </header>
-
 <div class="container">
+<div class="auto-download"><button onclick="autoDownload()">دانلود خودکار</button></div>
 <h1>دانلود آخرین نسخه Hiddify VPN</h1>
 <p style="text-align:center;">این صفحه همیشه آخرین نسخه‌ها را از GitHub دریافت می‌کند.</p>
-
 <div class="cards">
-
-  <!-- Android Card -->
-  <div class="card fade-in" id="android">
-    <img src="android_logo.png" alt="Android Logo">
-    <h2>اندروید</h2>
-    <select id="android-version"></select>
-    <select id="android-arch">
-      <option value="universal">Universal</option>
-      <option value="v7">V7</option>
-      <option value="v8">V8</option>
-    </select>
-    <button class="download-btn" onclick="downloadAndroid()">دانلود</button>
-  </div>
-
-  <!-- Windows Card -->
-  <div class="card fade-in" id="windows">
-    <img src="windows_logo.png" alt="Windows Logo">
-    <h2>ویندوز</h2>
-    <select id="windows-version"></select>
-    <button class="download-btn" onclick="downloadWindows()">دانلود</button>
-  </div>
-
-  <!-- Mac Card -->
-  <div class="card fade-in" id="mac">
-    <img src="mac_logo.png" alt="Mac Logo">
-    <h2>مک</h2>
-    <select id="mac-version"></select>
-    <button class="download-btn" onclick="downloadMac()">دانلود</button>
-  </div>
-
-  <!-- Linux Card -->
-  <div class="card fade-in" id="linux">
-    <img src="linux_logo.png" alt="Linux Logo">
-    <h2>لینوکس</h2>
-    <select id="linux-version"></select>
-    <button class="download-btn" onclick="downloadLinux()">دانلود</button>
-  </div>
-
+<div class="card fade-in" id="android">
+<img src="android_logo.png" alt="Android Logo">
+<h2>اندروید</h2>
+<select id="android-version"></select>
+<select id="android-arch">
+<option value="universal">Universal</option>
+<option value="v7">V7</option>
+<option value="v8">V8</option>
+</select>
+<button class="download-btn" onclick="downloadAndroid()">دانلود</button>
 </div>
-
+<div class="card fade-in" id="windows">
+<img src="windows_logo.png" alt="Windows Logo">
+<h2>ویندوز</h2>
+<select id="windows-version"></select>
+<button class="download-btn" onclick="downloadWindows()">دانلود</button>
+</div>
+<div class="card fade-in" id="mac">
+<img src="mac_logo.png" alt="Mac Logo">
+<h2>مک</h2>
+<select id="mac-version"></select>
+<button class="download-btn" onclick="downloadMac()">دانلود</button>
+</div>
+<div class="card fade-in" id="linux">
+<img src="linux_logo.png" alt="Linux Logo">
+<h2>لینوکس</h2>
+<select id="linux-version"></select>
+<button class="download-btn" onclick="downloadLinux()">دانلود</button>
+</div>
+</div>
+<div class="guide">
+<h3>راهنما</h3>
+<p><b>دانلود خودکار:</b> با زدن این دکمه، سیستم عامل دستگاه شما شناسایی می‌شود و آخرین نسخه مربوطه دانلود می‌شود.</p>
+<p><b>اندروید V7 و V8:</b> برای تشخیص معماری گوشی خود، به تنظیمات تلگرام بروید و به انتهای آن نگاه کنید. عدد معماری گوشی شما در آنجا نوشته شده و بر اساس آن V7 یا V8 را انتخاب کنید. اگر مطمئن نیستید، گزینه Universal را بزنید.</p>
+</div>
 <footer>
-  <p>سازنده: <a href="https://t.me/MahdiAGM0" target="_blank">@MahdiAGM0</a></p>
-  <p>تلگرام: <a href="https://t.me/Academii73" target="_blank">@Academii73</a></p>
-  <p>لینک اصلی پروژه در گیت‌هاب: 
-    <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify GitHub Releases</a>
-  </p>
+<p>سازنده: <a href="https://t.me/MahdiAGM0" target="_blank">@MahdiAGM0</a></p>
+<p>تلگرام: <a href="https://t.me/Academii73" target="_blank">@Academii73</a></p>
+<p>لینک اصلی پروژه در گیت‌هاب: <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify GitHub Releases</a></p>
 </footer>
-
 <script>
 let androidFiles=[], windowsFiles=[], macFiles=[], linuxFiles=[];
-
-async function loadReleases() {
-  try {
-    const res = await fetch("https://api.github.com/repos/hiddify/hiddify-next/releases");
-    const releases = await res.json();
-
-    androidFiles=[]; windowsFiles=[]; macFiles=[]; linuxFiles=[];
-
-    releases.forEach(rel=>{
-      const version = rel.tag_name;
-      rel.assets.forEach(asset=>{
-        const name = asset.name.toLowerCase();
-        if(name.endsWith(".apk")) androidFiles.push({version, url: asset.browser_download_url, name});
-        else if(name.endsWith(".exe") || name.includes("windows")) windowsFiles.push({version, url: asset.browser_download_url, name});
-        else if(name.endsWith(".dmg") || name.includes("mac")) macFiles.push({version, url: asset.browser_download_url, name});
-        else if(name.endsWith(".appimage") || name.endsWith(".deb") || name.endsWith(".rpm") || name.includes("linux")) linuxFiles.push({version, url: asset.browser_download_url, name});
-      });
-    });
-
-    populateVersions("android", androidFiles);
-    populateVersions("windows", windowsFiles);
-    populateVersions("mac", macFiles);
-    populateVersions("linux", linuxFiles);
-
-  } catch(err){
-    alert("خطا در دریافت داده‌ها از GitHub");
-    console.error(err);
-  }
+async function loadReleases(){
+try{
+const res=await fetch("https://api.github.com/repos/hiddify/hiddify-next/releases");
+const releases=await res.json();
+androidFiles=[]; windowsFiles=[]; macFiles=[]; linuxFiles=[];
+releases.forEach(rel=>{
+const version=rel.tag_name;
+rel.assets.forEach(asset=>{
+const name=asset.name.toLowerCase();
+if(name.endsWith(".apk")) androidFiles.push({version,url:asset.browser_download_url,name});
+else if(name.endsWith(".exe") || name.includes("windows")) windowsFiles.push({version,url:asset.browser_download_url,name});
+else if(name.endsWith(".dmg") || name.includes("mac")) macFiles.push({version,url:asset.browser_download_url,name});
+else if(name.endsWith(".appimage") || name.endsWith(".deb") || name.endsWith(".rpm") || name.includes("linux")) linuxFiles.push({version,url:asset.browser_download_url,name});
+});
+});
+populateVersions("android",androidFiles);
+populateVersions("windows",windowsFiles);
+populateVersions("mac",macFiles);
+populateVersions("linux",linuxFiles);
+}catch(err){alert("خطا در دریافت داده‌ها از GitHub");console.error(err);}
 }
-
-function populateVersions(os, files){
-  const select = document.getElementById(os+"-version");
-  select.innerHTML = "";
-  const versionsSet = new Set(files.map(f=>f.version));
-  const versions = Array.from(versionsSet).sort((a,b)=>b.localeCompare(a));
-  versions.forEach(v=>{
-    const opt = document.createElement("option");
-    opt.value = v;
-    opt.text = v;
-    select.appendChild(opt);
-  });
+function populateVersions(os,files){
+const select=document.getElementById(os+"-version");
+select.innerHTML="";
+const versionsSet=new Set(files.map(f=>f.version));
+const versions=Array.from(versionsSet).sort((a,b)=>b.localeCompare(a));
+versions.forEach(v=>{const opt=document.createElement("option");opt.value=v;opt.text=v;select.appendChild(opt);});
 }
-
-// دانلودها
 function downloadAndroid(){
-  const version = document.getElementById("android-version").value;
-  const arch = document.getElementById("android-arch").value;
-  const file = androidFiles.find(f=>{
-    if(f.version!==version) return false;
-    if(arch==="universal") return true;
-    return f.name.includes(arch);
-  });
-  if(file) window.open(file.url,"_blank");
-  else alert("فایلی برای این نسخه/معماری پیدا نشد");
+const version=document.getElementById("android-version").value;
+const arch=document.getElementById("android-arch").value;
+let file=androidFiles.find(f=>{if(f.version!==version)return false;if(arch==="universal")return true;return f.name.includes(arch);});
+if(file) window.location.href=file.url; else alert("فایلی برای این نسخه/معماری پیدا نشد");
 }
-
 function downloadWindows(){
-  const version = document.getElementById("windows-version").value;
-  const file = windowsFiles.find(f=>f.version===version);
-  if(file) window.open(file.url,"_blank");
-  else alert("فایلی برای این نسخه پیدا نشد");
+const version=document.getElementById("windows-version").value;
+let file=windowsFiles.find(f=>f.version===version);
+if(file) window.location.href=file.url; else alert("فایلی برای این نسخه پیدا نشد");
 }
-
 function downloadMac(){
-  const version = document.getElementById("mac-version").value;
-  const file = macFiles.find(f=>f.version===version);
-  if(file) window.open(file.url,"_blank");
-  else alert("فایلی برای این نسخه پیدا نشد");
+const version=document.getElementById("mac-version").value;
+let file=macFiles.find(f=>f.version===version);
+if(file) window.location.href=file.url; else alert("فایلی برای این نسخه پیدا نشد");
 }
-
 function downloadLinux(){
-  const version = document.getElementById("linux-version").value;
-  const file = linuxFiles.find(f=>f.version===version);
-  if(file) window.open(file.url,"_blank");
-  else alert("فایلی برای این نسخه پیدا نشد");
+const version=document.getElementById("linux-version").value;
+let file=linuxFiles.find(f=>f.version===version);
+if(file) window.location.href=file.url; else alert("فایلی برای این نسخه پیدا نشد");
 }
-
+function autoDownload(){
+const ua=navigator.userAgent.toLowerCase();
+if(ua.includes("android")){
+const version=document.getElementById("android-version").options[0].value;
+const file=androidFiles.find(f=>f.version===version);
+if(file) window.location.href=file.url; else alert("فایل اندروید پیدا نشد");
+}else if(ua.includes("win")){
+const version=document.getElementById("windows-version").options[0].value;
+const file=windowsFiles.find(f=>f.version===version);
+if(file) window.location.href=file.url; else alert("فایل ویندوز پیدا نشد");
+}else if(ua.includes("mac")){
+const version=document.getElementById("mac-version").options[0].value;
+const file=macFiles.find(f=>f.version===version);
+if(file) window.location.href=file.url; else alert("فایل مک پیدا نشد");
+}else{
+const version=document.getElementById("linux-version").options[0].value;
+const file=linuxFiles.find(f=>f.version===version);
+if(file) window.location.href=file.url; else alert("فایل لینوکس پیدا نشد");
+}}
 loadReleases();
 </script>
-
 </body>
 </html>
