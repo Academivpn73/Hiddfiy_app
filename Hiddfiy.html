@@ -1,162 +1,222 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>دانلود Hiddify VPN</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>丿丕賳賱賵丿 Hiddify VPN</title>
 <style>
-/* CSS مشابه کدی که فرستادیم */
-* { box-sizing:border-box; margin:0; padding:0; }
-body { font-family: "Tahoma", Arial, sans-serif; background: url("./Hiddfiy_P.jpg") no-repeat center center fixed; background-size: cover; color: #fff; direction: rtl; }
-header { position: sticky; top:0; background: rgba(0,0,0,0.7); text-align: center; padding: 10px 0;}
-header nav a { margin: 0 15px; text-decoration:none; color: #00e5ff; font-weight:bold; font-size:18px;}
-header nav a:hover { text-decoration: underline;}
-.container { max-width: 1100px; margin: 20px auto; padding:20px;}
-h1,h2 { text-align:center; margin-bottom:15px;}
-.auto-download { text-align:center; margin-bottom:20px;}
-.auto-download button { background:#ff9800; border:none; color:white; padding:10px 20px; border-radius:10px; font-size:16px; cursor:pointer;}
-.auto-download button:hover { background:#ffc107; }
-.cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-.card { background: rgba(255,255,255,0.05); border-radius: 15px; backdrop-filter: blur(10px); padding: 20px; width: 250px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
-.card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-.card img { width:80px; margin-bottom:10px; }
-select { width: 90%; padding:8px; margin:10px 0; border-radius:8px; border:none; font-size:16px; }
-button.download-btn { padding:10px 20px; border:none; border-radius:10px; background:#4CAF50; color:white; font-size:16px; cursor:pointer; transition: 0.3s;}
-button.download-btn:hover { background:#76ff03;}
-footer { text-align:center; padding:15px; margin-top:30px; background: rgba(0,0,0,0.7); border-radius:10px; }
-footer a { color:#00b0ff; font-weight:bold; text-decoration:none; }
-footer a:hover { text-decoration: underline;}
-.fade-in { animation: fadeIn 1s ease forwards; opacity:0; }
-@keyframes fadeIn { to { opacity:1; } }
-.guide { background: rgba(0,0,0,0.5); padding:20px; border-radius:10px; margin-top:30px; }
-.guide h3 { text-align:center; margin-bottom:10px; }
-.guide p { margin-bottom:10px; line-height:1.6; }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--glass-bg:rgba(255,255,255,0.06);--accent:#00e5ff;--btn:#4CAF50;--orange:#ff9800}
+body{
+  font-family:Tahoma,Arial,Helvetica,sans-serif;
+  direction:rtl;
+  color:#fff;
+  background: url("./Hiddfiy_P.jpg") no-repeat center center fixed;
+  background-size:cover;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+header{position:sticky;top:0;z-index:40;background:rgba(0,0,0,0.65);padding:12px 10px;text-align:center}
+header nav a{color:var(--accent);text-decoration:none;margin:0 14px;font-weight:700;font-size:18px}
+.container{max-width:1100px;margin:22px auto;padding:18px}
+h1{text-align:center;margin-bottom:6px;font-size:28px;text-shadow:0 2px 6px rgba(0,0,0,0.6)}
+.pcenter{text-align:center;margin-bottom:18px}
+.auto-download{display:flex;justify-content:center;margin-bottom:18px}
+.auto-download button{background:var(--orange);border:none;padding:10px 18px;border-radius:10px;color:#fff;font-weight:700;cursor:pointer}
+.cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+.card{width:260px;padding:18px;border-radius:14px;background:var(--glass-bg);backdrop-filter:blur(8px);box-shadow:0 6px 18px rgba(0,0,0,0.45);transition:.28s;display:flex;flex-direction:column;align-items:center}
+.card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.55)}
+.card img{width:72px;height:72px;object-fit:contain;margin-bottom:10px}
+.card h2{margin-bottom:8px;color:#fff}
+select{width:100%;padding:8px;border-radius:8px;border:none;margin-bottom:8px;font-size:15px}
+button.download-btn{width:100%;padding:10px;border-radius:8px;border:none;background:var(--btn);color:#fff;font-weight:700;cursor:pointer}
+.guide{margin-top:28px;background:rgba(0,0,0,0.5);padding:16px;border-radius:10px;line-height:1.6}
+footer{margin-top:26px;text-align:center;padding:16px;background:rgba(0,0,0,0.65);border-radius:8px}
+footer a{color:var(--accent);text-decoration:none;font-weight:700}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:80}
+.modal{width:min(760px,92%);background:rgba(255,255,255,0.06);border-radius:12px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,0.6);color:#fff;direction:rtl}
+.modal h3{margin-bottom:12px;text-align:center;font-size:20px}
+.modal p{margin-bottom:10px;line-height:1.6}
+.modal .links a{display:inline-block;margin:6px 8px;color:var(--accent);text-decoration:none}
+.modal .actions{display:flex;justify-content:center;margin-top:14px}
+.modal .actions button{background:var(--btn);border:none;color:#fff;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:700}
+.small-note{font-size:13px;color:#ddd;margin-top:6px;text-align:center}
+@media (max-width:600px){ .card{width:92%} header nav a{font-size:16px;margin:0 8px} }
 </style>
 </head>
 <body>
 <header>
-<nav>
-<a href="#android">اندروید</a>
-<a href="#windows">ویندوز</a>
-<a href="#mac">مک</a>
-<a href="#linux">لینوکس</a>
-</nav>
+  <nav>
+    <a href="#android">丕賳丿乇賵蹖丿</a>
+    <a href="#windows">賵蹖賳丿賵夭</a>
+    <a href="#mac">賲讴</a>
+    <a href="#linux">賱蹖賳賵讴爻</a>
+  </nav>
 </header>
-<div class="container">
-<div class="auto-download"><button onclick="autoDownload()">دانلود خودکار</button></div>
-<h1>دانلود آخرین نسخه Hiddify VPN</h1>
-<p style="text-align:center;">این صفحه همیشه آخرین نسخه‌ها را از GitHub دریافت می‌کند.</p>
-<div class="cards">
-<div class="card fade-in" id="android">
-<img src="android_logo.png" alt="Android Logo">
-<h2>اندروید</h2>
-<select id="android-version"></select>
-<select id="android-arch">
-<option value="universal">Universal</option>
-<option value="v7">V7</option>
-<option value="v8">V8</option>
-</select>
-<button class="download-btn" onclick="downloadAndroid()">دانلود</button>
+
+<div id="introModal" class="modal-backdrop" role="dialog" aria-modal="true">
+  <div class="modal" role="document">
+    <h3>饾檴饾檼饾檳饾檧饾檷 鈫� @Puriya73</h3>
+    <p>丿乇 丕蹖賳 讴丕賳丕賱 賴丿賮 賲丕 丕鬲氐丕賱 倬丕蹖丿丕乇 卮賲丕 亘賴 丕蹖賳鬲乇賳鬲 賵 倬丕爻禺诏賵蹖蹖 亘賴 賳蹖丕夭 賴丕蹖 卮賲丕 丿乇 讴賵鬲丕賴 鬲乇蹖賳 夭賲丕賳 賲賲讴賳 亘丕 丕讴丕賳鬲 賴丕蹖 丕禺鬲氐丕氐蹖 丕爻鬲.</p>
+    <div class="links" style="text-align:center;margin-bottom:8px">
+      <a href="https://t.me/Puriya73" target="_blank">@Puriya73</a> 鈥�
+      <a href="https://t.me/Academi_team" target="_blank">饾檪饾檷饾檴饾檺饾檵: @Academi_team</a> 鈥�
+      <a href="https://t.me/Academii_support" target="_blank">Support: @Academii_support</a>
+    </div>
+    <p style="text-align:center">馃挀賴賲乇丕賴蹖 卮賲丕 亘丕毓孬 丕賮鬲禺丕乇 賲丕爻鬲馃挀</p>
+    <div class="actions"><button id="introAccept">鬲丕蹖蹖丿 鉁�</button></div>
+  </div>
 </div>
-<div class="card fade-in" id="windows">
-<img src="windows_logo.png" alt="Windows Logo">
-<h2>ویندوز</h2>
-<select id="windows-version"></select>
-<button class="download-btn" onclick="downloadWindows()">دانلود</button>
+
+<div class="container" id="mainContent" aria-hidden="true">
+  <div class="auto-download">
+    <button id="autoBtn">丿丕賳賱賵丿 禺賵丿讴丕乇</button>
+  </div>
+
+  <h1>丿丕賳賱賵丿 丌禺乇蹖賳 賳爻禺賴 Hiddify VPN</h1>
+  <p class="pcenter">丕蹖賳 氐賮丨賴 賴賲蹖卮賴 丌禺乇蹖賳 賳爻禺賴鈥屬囏� 乇丕 丕夭 GitHub 丿乇蹖丕賮鬲 賲蹖鈥屭┵嗀�.</p>
+
+  <div class="cards" id="cards"></div>
+
+  <div class="guide" id="guide">
+    <h3>乇丕賴賳賲丕</h3>
+    <p><strong>丿丕賳賱賵丿 禺賵丿讴丕乇:</strong> 亘丕 夭丿賳 丿讴賲賴 <em>丿丕賳賱賵丿 禺賵丿讴丕乇</em>貙 爻蹖爻鬲賲 毓丕賲賱 丿爻鬲诏丕賴 卮賲丕 卮賳丕爻丕蹖蹖 賲蹖鈥屫促堌� 賵 丌禺乇蹖賳 賳爻禺賴 賲賳丕爻亘 丌賳 丿丕賳賱賵丿 禺賵丕賴丿 卮丿.</p>
+    <p><strong>丕賳丿乇賵蹖丿 V7 賵 V8:</strong> 亘乇丕蹖 鬲卮禺蹖氐 賲毓賲丕乇蹖 诏賵卮蹖 禺賵丿貙 賲蹖鈥屫堌з嗃屫� 亘賴 鬲賳馗蹖賲丕鬲 鬲賱诏乇丕賲 亘乇蹖丿 鈫� 鬲賳馗蹖賲丕鬲 鈫� 丿乇亘丕乇賴 (About) 蹖丕 丌禺乇蹖賳 賲賳賵賴丕. 丿乇 亘毓囟蹖 賳爻禺賴鈥屬囏� 賳丕賲 賲毓賲丕乇蹖 賳賲丕蹖卮 丿丕丿賴 賲蹖鈥屫促堌� (賲丕賳賳丿 arm64 蹖丕 armeabi-v7a). 丕诏乇 賲胤賲卅賳 賳蹖爻鬲蹖丿 诏夭蹖賳賴 <em>Universal</em> 乇丕 丕賳鬲禺丕亘 讴賳蹖丿.</p>
+    <p class="small-note">丕诏乇 倬賵卮賴鈥屫й� 亘乇丕蹖 賱賵诏賵賴丕 蹖丕 毓讴爻鈥屬囏� 賳丿丕乇蹖丿貙 賮丕蹖賱鈥屬囏й� 賱賵诏賵 丿乇 賴賲丕賳 賮賵賱丿乇 index.html 賯乇丕乇 亘诏蹖乇賳丿.</p>
+  </div>
+
+  <footer>
+    <p>爻丕夭賳丿賴: <a href="https://t.me/MahdiAGM0" target="_blank">@MahdiAGM0</a> 鈥� 鬲賱诏乇丕賲: <a href="https://t.me/Academii73" target="_blank">@Academii73</a></p>
+    <p><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify GitHub Releases</a></p>
+  </footer>
 </div>
-<div class="card fade-in" id="mac">
-<img src="mac_logo.png" alt="Mac Logo">
-<h2>مک</h2>
-<select id="mac-version"></select>
-<button class="download-btn" onclick="downloadMac()">دانلود</button>
-</div>
-<div class="card fade-in" id="linux">
-<img src="linux_logo.png" alt="Linux Logo">
-<h2>لینوکس</h2>
-<select id="linux-version"></select>
-<button class="download-btn" onclick="downloadLinux()">دانلود</button>
-</div>
-</div>
-<div class="guide">
-<h3>راهنما</h3>
-<p><b>دانلود خودکار:</b> با زدن این دکمه، سیستم عامل دستگاه شما شناسایی می‌شود و آخرین نسخه مربوطه دانلود می‌شود.</p>
-<p><b>اندروید V7 و V8:</b> برای تشخیص معماری گوشی خود، به تنظیمات تلگرام بروید و به انتهای آن نگاه کنید. عدد معماری گوشی شما در آنجا نوشته شده و بر اساس آن V7 یا V8 را انتخاب کنید. اگر مطمئن نیستید، گزینه Universal را بزنید.</p>
-</div>
-<footer>
-<p>سازنده: <a href="https://t.me/MahdiAGM0" target="_blank">@MahdiAGM0</a></p>
-<p>تلگرام: <a href="https://t.me/Academii73" target="_blank">@Academii73</a></p>
-<p>لینک اصلی پروژه در گیت‌هاب: <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify GitHub Releases</a></p>
-</footer>
+
 <script>
+const REPO_OWNER = "hiddify";
+const REPO_NAME = "hiddify-next";
+const GITHUB_API = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases`;
 let androidFiles=[], windowsFiles=[], macFiles=[], linuxFiles=[];
+let releasesList=[];
+
+function isAndroidAsset(name){ return name.endsWith('.apk'); }
+function isWindowsAsset(name){ return name.endsWith('.exe') || name.endsWith('.msi'); }
+function isMacAsset(name){ return name.endsWith('.dmg') || name.endsWith('.pkg'); }
+function isLinuxAsset(name){ return name.endsWith('.appimage') || name.endsWith('.deb') || name.endsWith('.rpm'); }
+function normalize(n){ return n.toString().toLowerCase(); }
+
+function archMatchesAssetName(arch, assetName){
+  assetName = normalize(assetName);
+  if(arch === 'universal') return assetName.includes('universal') || assetName.includes('all') || (!assetName.includes('arm') && !assetName.includes('armeabi') && !assetName.includes('arm64'));
+  if(arch === 'v8') return assetName.includes('arm64') || assetName.includes('v8') || assetName.includes('arm64-v8a') || assetName.includes('aarch64');
+  if(arch === 'v7') return assetName.includes('armeabi') || assetName.includes('v7') || assetName.includes('armeabi-v7a');
+  return false;
+}
+
+function findAssetFor(osFiles, version, preferExts, arch){
+  const candidates = osFiles.filter(f => f.version === version);
+  if(candidates.length === 0) return null;
+  let archFiltered = candidates;
+  if(arch){
+    const matched = candidates.filter(c => archMatchesAssetName(arch, c.name));
+    if(matched.length) archFiltered = matched;
+  }
+  for(const ext of preferExts){
+    const found = archFiltered.find(c => c.name.toLowerCase().endsWith(ext) || c.name.toLowerCase().includes(ext.replace('.','')) );
+    if(found) return found;
+  }
+  return archFiltered[0] || candidates[0] || null;
+}
+
+function makeCard(osKey, logoFile, title){
+  const card = document.createElement('div'); card.className='card fade-in'; card.id=osKey+'-card';
+  const img = document.createElement('img'); img.src = logoFile; img.alt = title;
+  const h2 = document.createElement('h2'); h2.innerText = title;
+  const sel = document.createElement('select'); sel.id = osKey+'-version';
+  const archSel = document.createElement('select'); archSel.id = osKey+'-arch'; archSel.style.display='none';
+  if(osKey==='android'){ archSel.style.display='block'; archSel.innerHTML = '<option value="universal">Universal</option><option value="v7">V7</option><option value="v8">V8</option>'; }
+  const btn = document.createElement('button'); btn.className='download-btn'; btn.innerText='丿丕賳賱賵丿';
+  btn.addEventListener('click', ()=>{ if(osKey==='android') downloadAndroid(); else if(osKey==='windows') downloadWindows(); else if(osKey==='mac') downloadMac(); else if(osKey==='linux') downloadLinux(); });
+  card.appendChild(img); card.appendChild(h2); card.appendChild(sel); if(osKey==='android') card.appendChild(archSel); card.appendChild(btn);
+  return card;
+}
+
+function buildCards(){
+  const cards = document.getElementById('cards'); cards.innerHTML='';
+  cards.appendChild(makeCard('android','android_logo.svg','丕賳丿乇賵蹖丿'));
+  cards.appendChild(makeCard('windows','windows_logo.svg','賵蹖賳丿賵夭'));
+  cards.appendChild(makeCard('mac','mac_logo.svg','賲讴'));
+  cards.appendChild(makeCard('linux','linux_logo.svg','賱蹖賳賵讴爻'));
+}
+
+function populateVersions(osKey, filesArray){
+  const sel = document.getElementById(osKey+'-version'); sel.innerHTML='';
+  const versions = [...new Set(filesArray.map(f=>f.version))];
+  if(versions.length===0){ const opt = document.createElement('option'); opt.value=''; opt.text='賮丕蹖賱蹖 賲賵噩賵丿 賳蹖爻鬲'; sel.appendChild(opt); return; }
+  const sorted = versions.sort((a,b)=>{ const ai = releasesList.indexOf(a); const bi = releasesList.indexOf(b); return ai<bi? -1: ai>bi? 1: 0; }).reverse();
+  sorted.forEach(v=>{ const o = document.createElement('option'); o.value=v; o.text=v; sel.appendChild(o); });
+}
+
 async function loadReleases(){
-try{
-const res=await fetch("https://api.github.com/repos/hiddify/hiddify-next/releases");
-const releases=await res.json();
-androidFiles=[]; windowsFiles=[]; macFiles=[]; linuxFiles=[];
-releases.forEach(rel=>{
-const version=rel.tag_name;
-rel.assets.forEach(asset=>{
-const name=asset.name.toLowerCase();
-if(name.endsWith(".apk")) androidFiles.push({version,url:asset.browser_download_url,name});
-else if(name.endsWith(".exe") || name.includes("windows")) windowsFiles.push({version,url:asset.browser_download_url,name});
-else if(name.endsWith(".dmg") || name.includes("mac")) macFiles.push({version,url:asset.browser_download_url,name});
-else if(name.endsWith(".appimage") || name.endsWith(".deb") || name.endsWith(".rpm") || name.includes("linux")) linuxFiles.push({version,url:asset.browser_download_url,name});
-});
-});
-populateVersions("android",androidFiles);
-populateVersions("windows",windowsFiles);
-populateVersions("mac",macFiles);
-populateVersions("linux",linuxFiles);
-}catch(err){alert("خطا در دریافت داده‌ها از GitHub");console.error(err);}
+  try{
+    const res = await fetch(GITHUB_API);
+    if(!res.ok) throw new Error('GitHub API error '+res.status);
+    const data = await res.json();
+    releasesList = data.map(r=>r.tag_name);
+    androidFiles=[]; windowsFiles=[]; macFiles=[]; linuxFiles=[];
+    data.forEach(rel=>{
+      const version = rel.tag_name;
+      rel.assets.forEach(asset=>{
+        const name = asset.name || '';
+        const lower = name.toLowerCase();
+        const item = {version, name: name, url: asset.browser_download_url};
+        if(isAndroidAsset(lower)) androidFiles.push(item);
+        else if(isWindowsAsset(lower)) windowsFiles.push(item);
+        else if(isMacAsset(lower)) macFiles.push(item);
+        else if(isLinuxAsset(lower)) linuxFiles.push(item);
+      });
+    });
+    buildCards();
+    populateVersions('android', androidFiles);
+    populateVersions('windows', windowsFiles);
+    populateVersions('mac', macFiles);
+    populateVersions('linux', linuxFiles);
+    ['android','windows','mac','linux'].forEach(os=>{ const s = document.getElementById(os+'-version'); if(s && s.options.length) s.selectedIndex = 0; });
+  }catch(err){ console.error(err); alert('禺胤丕 丿乇 丿乇蹖丕賮鬲 丕胤賱丕毓丕鬲 丕夭 GitHub: '+err.message); }
 }
-function populateVersions(os,files){
-const select=document.getElementById(os+"-version");
-select.innerHTML="";
-const versionsSet=new Set(files.map(f=>f.version));
-const versions=Array.from(versionsSet).sort((a,b)=>b.localeCompare(a));
-versions.forEach(v=>{const opt=document.createElement("option");opt.value=v;opt.text=v;select.appendChild(opt);});
-}
-function downloadAndroid(){
-const version=document.getElementById("android-version").value;
-const arch=document.getElementById("android-arch").value;
-let file=androidFiles.find(f=>{if(f.version!==version)return false;if(arch==="universal")return true;return f.name.includes(arch);});
-if(file) window.location.href=file.url; else alert("فایلی برای این نسخه/معماری پیدا نشد");
-}
-function downloadWindows(){
-const version=document.getElementById("windows-version").value;
-let file=windowsFiles.find(f=>f.version===version);
-if(file) window.location.href=file.url; else alert("فایلی برای این نسخه پیدا نشد");
-}
-function downloadMac(){
-const version=document.getElementById("mac-version").value;
-let file=macFiles.find(f=>f.version===version);
-if(file) window.location.href=file.url; else alert("فایلی برای این نسخه پیدا نشد");
-}
-function downloadLinux(){
-const version=document.getElementById("linux-version").value;
-let file=linuxFiles.find(f=>f.version===version);
-if(file) window.location.href=file.url; else alert("فایلی برای این نسخه پیدا نشد");
-}
+
+function downloadAndroid(){ const version=document.getElementById('android-version').value; const arch=document.getElementById('android-arch').value; const asset=findAssetFor(androidFiles, version, ['.apk'], arch); if(asset) window.location.href=asset.url; else alert('賮丕蹖賱蹖 亘乇丕蹖 丕蹖賳 賳爻禺賴/賲毓賲丕乇蹖 倬蹖丿丕 賳卮丿'); }
+function downloadWindows(){ const version=document.getElementById('windows-version').value; const asset=findAssetFor(windowsFiles, version, ['.exe','.msi','.zip'], null); if(asset) window.location.href=asset.url; else alert('賮丕蹖賱蹖 亘乇丕蹖 丕蹖賳 賳爻禺賴 倬蹖丿丕 賳卮丿'); }
+function downloadMac(){ const version=document.getElementById('mac-version').value; const asset=findAssetFor(macFiles, version, ['.dmg','.pkg','.zip'], null); if(asset) window.location.href=asset.url; else alert('賮丕蹖賱蹖 亘乇丕蹖 丕蹖賳 賳爻禺賴 倬蹖丿丕 賳卮丿'); }
+function downloadLinux(){ const version=document.getElementById('linux-version').value; const asset=findAssetFor(linuxFiles, version, ['.AppImage','.deb','.rpm','.tar.gz','.zip'], null); if(asset) window.location.href=asset.url; else alert('賮丕蹖賱蹖 亘乇丕蹖 丕蹖賳 賳爻禺賴 倬蹖丿丕 賳卮丿'); }
+
 function autoDownload(){
-const ua=navigator.userAgent.toLowerCase();
-if(ua.includes("android")){
-const version=document.getElementById("android-version").options[0].value;
-const file=androidFiles.find(f=>f.version===version);
-if(file) window.location.href=file.url; else alert("فایل اندروید پیدا نشد");
-}else if(ua.includes("win")){
-const version=document.getElementById("windows-version").options[0].value;
-const file=windowsFiles.find(f=>f.version===version);
-if(file) window.location.href=file.url; else alert("فایل ویندوز پیدا نشد");
-}else if(ua.includes("mac")){
-const version=document.getElementById("mac-version").options[0].value;
-const file=macFiles.find(f=>f.version===version);
-if(file) window.location.href=file.url; else alert("فایل مک پیدا نشد");
-}else{
-const version=document.getElementById("linux-version").options[0].value;
-const file=linuxFiles.find(f=>f.version===version);
-if(file) window.location.href=file.url; else alert("فایل لینوکس پیدا نشد");
-}}
+  const ua = navigator.userAgent.toLowerCase();
+  if(ua.includes('android')){
+    const latestVersion = document.getElementById('android-version').value;
+    let arch = 'universal';
+    if(ua.includes('arm64')||ua.includes('aarch64')) arch='v8';
+    else if(ua.includes('armeabi')||ua.includes('armv7')) arch='v7';
+    const asset = findAssetFor(androidFiles, latestVersion, ['.apk'], arch) || findAssetFor(androidFiles, latestVersion, ['.apk'], 'universal');
+    if(asset) window.location.href=asset.url; else alert('賮丕蹖賱 丕賳丿乇賵蹖丿 倬蹖丿丕 賳卮丿');
+  } else if(ua.includes('win')){
+    const latest = document.getElementById('windows-version').value;
+    const asset = findAssetFor(windowsFiles, latest, ['.exe','.msi','.zip'], null);
+    if(asset) window.location.href=asset.url; else alert('賮丕蹖賱 賵蹖賳丿賵夭 倬蹖丿丕 賳卮丿');
+  } else if(ua.includes('mac')|| ua.includes('iphone')|| ua.includes('ipad')){
+    const latest = document.getElementById('mac-version').value;
+    const asset = findAssetFor(macFiles, latest, ['.dmg','.pkg','.zip'], null);
+    if(asset) window.location.href=asset.url; else alert('賮丕蹖賱 賲讴 倬蹖丿丕 賳卮丿');
+  } else {
+    const latest = document.getElementById('linux-version').value;
+    const asset = findAssetFor(linuxFiles, latest, ['.AppImage','.deb','.rpm','.tar.gz','.zip'], null);
+    if(asset) window.location.href=asset.url; else alert('賮丕蹖賱 賱蹖賳賵讴爻 倬蹖丿丕 賳卮丿');
+  }
+}
+
+document.getElementById('introAccept').addEventListener('click', ()=>{ document.getElementById('introModal').style.display='none'; document.getElementById('mainContent').removeAttribute('aria-hidden'); try{ localStorage.setItem('hiddify_intro_seen','1'); }catch(e){} });
+try{ if(localStorage.getItem('hiddify_intro_seen')){ document.getElementById('introModal').style.display='none'; document.getElementById('mainContent').removeAttribute('aria-hidden'); } }catch(e){};
+document.getElementById('autoBtn').addEventListener('click', autoDownload);
 loadReleases();
 </script>
 </body>
