@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>دانلود Hiddify VPN</title>
 <style>
-/* local Vazir font will be used if present */
+/* Local font (replace fonts/Vazir.woff2 with real file if available) */
 @font-face{font-family:Vazir; src: url('fonts/Vazir.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap;}
 :root{--accent:#00e5ff; --glass: rgba(255,255,255,0.06); --btn:#4CAF50; --orange:#ff9800}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -19,6 +19,7 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   padding-bottom:40px;
+  margin:0;
 }
 header{position:sticky;top:0;z-index:40;background:rgba(0,0,0,0.65);padding:12px 10px;text-align:center}
 header nav a{color:var(--accent);text-decoration:none;margin:0 12px;font-weight:700;font-size:17px}
@@ -29,9 +30,9 @@ h1{text-align:center;margin-bottom:10px;font-size:26px}
 .auto-download{display:flex;justify-content:center;margin-bottom:18px}
 .auto-download button{background:var(--orange);border:none;color:#fff;padding:10px 18px;border-radius:10px;font-weight:700;cursor:pointer}
 .cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
-.card{width:280px;padding:18px;border-radius:14px;background:var(--glass);backdrop-filter:blur(8px);box-shadow:0 6px 18px rgba(0,0,0,0.45);transition:.28s;display:flex;flex-direction:column;align-items:center}
+.card{width:300px;padding:18px;border-radius:14px;background:var(--glass);backdrop-filter:blur(8px);box-shadow:0 6px 18px rgba(0,0,0,0.45);transition:.28s;display:flex;flex-direction:column;align-items:center}
 .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.55)}
-.card img{width:72px;height:72px;object-fit:contain;margin-bottom:10px}
+.card img{width:84px;height:84px;object-fit:contain;margin-bottom:10px}
 .card h2{margin-bottom:8px;color:#fff}
 select{width:100%;padding:9px;border-radius:8px;border:none;margin-bottom:10px;font-size:15px;background:rgba(255,255,255,0.03);color:#fff;outline:none}
 button.download-btn{width:100%;padding:10px;border-radius:8px;border:none;background:var(--btn);color:#fff;font-weight:700;cursor:pointer}
@@ -66,10 +67,10 @@ footer a{color:var(--accent);text-decoration:none;font-weight:700}
   </nav>
 </header>
 
-<!-- Intro modal -->
+<!-- Intro modal (shows on every load) -->
 <div id="introModal" class="modal-backdrop" role="dialog" aria-modal="true">
   <div class="modal" role="document">
-    <h3>✨ OWNER: <a href="https://t.me/Puriya73" target="_blank">@Puriya73</a></h3>
+    <h3>✨ OWNER: <a href="https://t.me/Academii73" target="_blank">@Puriya73</a></h3>
     <p>📢 در این کانال، هدف ما فراهم کردن <strong>اتصال پایدار و سریع</strong> به اینترنت است. 🌍 با ارائه اکانت‌های اختصاصی و پشتیبانی سریع همیشه همراه شما هستیم.</p>
     <p class="links">
       <a href="https://t.me/Academi_team" target="_blank">گروه: @Academi_team</a>
@@ -77,9 +78,9 @@ footer a{color:var(--accent);text-decoration:none;font-weight:700}
     </p>
     <p style="text-align:center">💓 همراهی شما باعث افتخار ماست 💓</p>
     <div class="actions">
-      <button onclick="window.open('https://t.me/Puriya73','_blank')">عضویت در کانال</button>
+      <button onclick="window.open('https://t.me/Academii73','_blank')">عضویت در کانال</button>
       <button onclick="window.open('https://t.me/Academi_team','_blank')">عضویت در گروه</button>
-      <button onclick="window.open('https://t.me/Academii_support','_blank')">پشتیبانی</button>
+      <button onclick="window.open('https://t.me/@ahdiAGM0','_blank')">پشتیبانی</button>
       <button id="introAccept" style="background:#6c757d">تأیید</button>
     </div>
   </div>
@@ -110,6 +111,8 @@ footer a{color:var(--accent);text-decoration:none;font-weight:700}
 const REPO_OWNER = "hiddify";
 const REPO_NAME = "hiddify-next";
 const GITHUB_API = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases`;
+/* Logos from user's repo */
+const LOGO_BASE = "https://raw.githubusercontent.com/Academivpn73/Hiddfiy_app/main/";
 
 /* state */
 let androidFiles=[], windowsFiles=[], macFiles=[], linuxFiles=[];
@@ -150,10 +153,10 @@ function makeCard(osKey, logo, title){
   const card = document.createElement('div'); card.className='card'; card.id=osKey+'-card';
   const img = document.createElement('img'); img.src=logo; img.alt=title;
   const h2 = document.createElement('h2'); h2.innerText=title;
-  const sel = document.createElement('select'); sel.id=osKey+'-version';
+  const sel = document.createElement('select'); sel.id = osKey+'-version';
   if(osKey==='android'){
     const archSel = document.createElement('select'); archSel.id='android-arch';
-    archSel.innerHTML = '<option value="universal">Universal</option><option value="v7">V7</option><option value="v8">V8</option>';
+    archSel.innerHTML = '<option value=\"universal\">Universal</option><option value=\"v7\">V7</option><option value=\"v8\">V8</option>';
     card.appendChild(img); card.appendChild(h2); card.appendChild(sel); card.appendChild(archSel);
   } else {
     card.appendChild(img); card.appendChild(h2); card.appendChild(sel);
@@ -172,10 +175,10 @@ function makeCard(osKey, logo, title){
 function buildCards(){
   const container = document.getElementById('cards');
   container.innerHTML='';
-  container.appendChild(makeCard('android','android_logo.svg','اندروید'));
-  container.appendChild(makeCard('windows','windows_logo.svg','ویندوز'));
-  container.appendChild(makeCard('mac','mac_logo.svg','مک'));
-  container.appendChild(makeCard('linux','linux_logo.svg','لینوکس'));
+  container.appendChild(makeCard('android', LOGO_BASE+'android_logo.png','اندروید'));
+  container.appendChild(makeCard('windows', LOGO_BASE+'windows_logo.png','ویندوز'));
+  container.appendChild(makeCard('mac', LOGO_BASE+'mac_logo.png','مک'));
+  container.appendChild(makeCard('linux', LOGO_BASE+'linux_logo.png','لینوکس'));
 }
 
 /* populate selects */
@@ -183,10 +186,12 @@ function populateVersions(osKey, arr){
   const sel = document.getElementById(osKey+'-version');
   sel.innerHTML='';
   const versions = [...new Set(arr.map(x=>x.version))];
-  if(versions.length===0){ sel.innerHTML='<option value="">فایلی موجود نیست</option>'; return; }
-  // sort by releasesList order (newest first)
+  if(versions.length===0){ sel.innerHTML='<option value=\"\">فایلی موجود نیست</option>'; return; }
+  // sort by releasesList order (newest first) and set default to first (latest)
   const sorted = versions.sort((a,b)=> releasesList.indexOf(b) - releasesList.indexOf(a));
-  sorted.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.text=v; sel.appendChild(o); });
+  sorted.forEach((v, idx)=>{ const o=document.createElement('option'); o.value=v; o.text=v; sel.appendChild(o); });
+  // default select first option (latest)
+  if(sel.options.length) sel.selectedIndex = 0;
 }
 
 /* fetch releases */
@@ -217,8 +222,6 @@ async function loadReleases(){
     populateVersions('windows', windowsFiles);
     populateVersions('mac', macFiles);
     populateVersions('linux', linuxFiles);
-    // default select first (latest)
-    ['android','windows','mac','linux'].forEach(os=>{ const s=document.getElementById(os+'-version'); if(s && s.options.length) s.selectedIndex=0; });
   }catch(err){
     console.error(err);
     alert('خطا در دریافت اطلاعات از GitHub: '+err.message);
@@ -277,13 +280,18 @@ function autoDownload(){
   }
 }
 
-/* modal behavior */
-document.getElementById('introAccept').addEventListener('click', ()=>{ document.getElementById('introModal').style.display='none'; document.getElementById('mainContent').removeAttribute('aria-hidden'); try{ localStorage.setItem('hiddify_intro_seen','1'); }catch(e){} });
-try{ if(localStorage.getItem('hiddify_intro_seen')){ document.getElementById('introModal').style.display='none'; document.getElementById('mainContent').removeAttribute('aria-hidden'); } }catch(e){};
-document.getElementById('autoBtn').addEventListener('click', autoDownload);
-
-/* init */
-loadReleases();
+/* modal behavior: always show on load; require click to close */
+document.getElementById('introAccept').addEventListener('click', ()=>{
+  document.getElementById('introModal').style.display='none';
+  document.getElementById('mainContent').removeAttribute('aria-hidden');
+});
+// if page loads and modal exists, keep it visible until accept
+window.addEventListener('load', ()=>{
+  // bind autoBtn
+  document.getElementById('autoBtn').addEventListener('click', autoDownload);
+  // init releases
+  loadReleases();
+});
 </script>
 </body>
 </html>
