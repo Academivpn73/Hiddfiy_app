@@ -1,297 +1,79 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>دانلود Hiddify VPN</title>
-<style>
-/* Local font (replace fonts/Vazir.woff2 with real file if available) */
-@font-face{font-family:Vazir; src: url('fonts/Vazir.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap;}
-:root{--accent:#00e5ff; --glass: rgba(255,255,255,0.06); --btn:#4CAF50; --orange:#ff9800}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  font-family: Vazir, Tahoma, Arial, sans-serif;
-  background: url('Hiddfiy_P.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color:#fff;
-  direction:rtl;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  padding-bottom:40px;
-  margin:0;
-}
-header{position:sticky;top:0;z-index:40;background:rgba(0,0,0,0.65);padding:12px 10px;text-align:center}
-header nav a{color:var(--accent);text-decoration:none;margin:0 12px;font-weight:700;font-size:17px}
-header nav a:hover{text-decoration:underline}
-.container{max-width:1100px;margin:20px auto;padding:18px}
-h1{text-align:center;margin-bottom:10px;font-size:26px}
-.pcenter{text-align:center;margin-bottom:16px}
-.auto-download{display:flex;justify-content:center;margin-bottom:18px}
-.auto-download button{background:var(--orange);border:none;color:#fff;padding:10px 18px;border-radius:10px;font-weight:700;cursor:pointer}
-.cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
-.card{width:300px;padding:18px;border-radius:14px;background:var(--glass);backdrop-filter:blur(8px);box-shadow:0 6px 18px rgba(0,0,0,0.45);transition:.28s;display:flex;flex-direction:column;align-items:center}
-.card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.55)}
-.card img{width:84px;height:84px;object-fit:contain;margin-bottom:10px}
-.card h2{margin-bottom:8px;color:#fff}
-select{width:100%;padding:9px;border-radius:8px;border:none;margin-bottom:10px;font-size:15px;background:rgba(255,255,255,0.03);color:#fff;outline:none}
-button.download-btn{width:100%;padding:10px;border-radius:8px;border:none;background:var(--btn);color:#fff;font-weight:700;cursor:pointer}
-.guide{margin-top:28px;background:rgba(0,0,0,0.5);padding:16px;border-radius:10px;line-height:1.6;color:#eee}
-footer{margin-top:26px;text-align:center;padding:12px;background:rgba(0,0,0,0.65);border-radius:8px}
-footer a{color:var(--accent);text-decoration:none;font-weight:700}
-
-/* modal */
-.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:90}
-.modal{width:min(760px,92%);background:rgba(255,255,255,0.06);border-radius:12px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,0.6);color:#fff;direction:rtl}
-.modal h3{margin-bottom:12px;text-align:center;font-size:20px}
-.modal p{margin-bottom:10px;line-height:1.6}
-.modal .links a{display:inline-block;margin:6px 8px;color:var(--accent);text-decoration:none}
-.modal .actions{display:flex;justify-content:center;margin-top:14px;gap:8px}
-.modal .actions button{background:var(--btn);border:none;color:#fff;padding:10px 12px;border-radius:8px;cursor:pointer;font-weight:700}
-.small-note{font-size:13px;color:#ddd;margin-top:6px;text-align:center}
-
-/* responsive */
-@media (max-width:700px){
-  .card{width:92%}
-  header nav a{font-size:15px;margin:0 8px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hiddfiy VPN</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <nav>
-    <a href="#android">اندروید</a>
-    <a href="#windows">ویندوز</a>
-    <a href="#mac">مک</a>
-    <a href="#linux">لینوکس</a>
-  </nav>
-</header>
+  <!-- ویدیو بکگراند -->
+  <video autoplay muted loop class="background-video">
+    <source src="Bak_Hiddfiy.mp4" type="video/mp4">
+    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+  </video>
 
-<!-- Intro modal (shows on every load) -->
-<div id="introModal" class="modal-backdrop" role="dialog" aria-modal="true">
-  <div class="modal" role="document">
-    <h3>✨ OWNER: <a href="https://t.me/Puriya73" target="_blank">@Puriya73</a></h3>
-    <p>📢 در این کانال، هدف ما فراهم کردن <strong>اتصال پایدار و سریع</strong> به اینترنت است. 🌍 با ارائه اکانت‌های اختصاصی و پشتیبانی سریع همیشه همراه شما هستیم.</p>
-    <p class="links">
-      <a href="https://t.me/Academi_team" target="_blank">گروه: @Academi_team</a>
-      <a href="https://t.me/Academii_support" target="_blank">پشتیبانی: @Academii_support</a>
-    </p>
-    <p style="text-align:center">💓 همراهی شما باعث افتخار ماست 💓</p>
-    <div class="actions">
-      <button onclick="window.open('https://t.me/Academi_vpn','_blank')">عضویت در کانال</button>
-      <button onclick="window.open('https://t.me/Academi_team','_blank')">عضویت در گروه</button>
-      <button onclick="window.open('https://t.me/Academii_support','_blank')">پشتیبانی</button>
-      <button id="introAccept" style="background:#6c757d">تأیید</button>
+  <!-- پاپ‌آپ معرفی کانال -->
+  <div id="intro-overlay" class="overlay">
+    <div class="overlay-content">
+      <h2>𝙊𝙒𝙉𝙀𝙍 ↴</h2>
+      <a href="https://t.me/Puriya73" target="_blank">@Puriya73</a>
+      <p>در این کانال هدف ما اتصال پایدار شما به اینترنت و پاسخگویی به نیاز های شما در کوتاه ترین زمان ممکن با اکانت های اختصاصی است.</p>
+      <p><b>𝙂𝙍𝙊𝙐𝙋:</b> <a href="https://t.me/Academi_team" target="_blank">@Academi_team</a></p>
+      <p><b>𝙎𝙪𝙥𝙥𝙤𝙧𝙩:</b> <a href="https://t.me/Academii_support" target="_blank">@Academii_support</a></p>
+      <button id="enter-site">تایید</button>
     </div>
   </div>
-</div>
 
-<div class="container" id="mainContent" aria-hidden="true">
-  <div class="auto-download"><button id="autoBtn">دانلود خودکار</button></div>
-  <h1>دانلود آخرین نسخه Hiddify VPN</h1>
-  <p class="pcenter">این صفحه همیشه آخرین نسخه‌ها را از GitHub دریافت می‌کند.</p>
+  <!-- محتوای اصلی سایت -->
+  <div id="main-content" class="hidden">
+    <h1 class="title">دانلود Hiddfiy VPN</h1>
+    <div class="device-container">
+      <div class="device-card">
+        <img src="android_logo.png" alt="Android">
+        <h2>اندروید</h2>
+        <select id="android-versions"></select>
+        <select id="android-abi">
+          <option value="arm64-v8a">V8</option>
+          <option value="armeabi-v7a">V7</option>
+          <option value="universal">Universal</option>
+        </select>
+        <button onclick="downloadSelected('android')">دانلود</button>
+      </div>
 
-  <div class="cards" id="cards"></div>
+      <div class="device-card">
+        <img src="windows_logo.png" alt="Windows">
+        <h2>ویندوز</h2>
+        <select id="windows-versions"></select>
+        <button onclick="downloadSelected('windows')">دانلود</button>
+      </div>
 
-  <div class="guide" id="guide">
-    <h3>راهنما</h3>
-    <p><strong>دانلود خودکار:</strong> با زدن دکمه <em>دانلود خودکار</em>، سیستم عامل دستگاه شما شناسایی می‌شود و آخرین نسخه مناسب آن دانلود خواهد شد.</p>
-    <p><strong>اندروید V7 و V8:</strong> برای تشخیص معماری گوشی خود، می‌توانید به تنظیمات تلگرام برید → تنظیمات → درباره (About) یا داخل بخش اطلاعات دستگاه. به دنبال عبارت‌هایی مانند <code>arm64</code> یا <code>armeabi-v7a</code> بگردید. اگر مطمئن نیستید گزینه <em>Universal</em> را انتخاب کنید.</p>
-    <p class="small-note">نسخه‌ها و فایل‌ها مستقیماً از ریلیزهای رسمی Hiddify روی GitHub خوانده می‌شوند.</p>
+      <div class="device-card">
+        <img src="mac_logo.png" alt="MacOS">
+        <h2>مک</h2>
+        <select id="mac-versions"></select>
+        <button onclick="downloadSelected('mac')">دانلود</button>
+      </div>
+
+      <div class="device-card">
+        <img src="linux_logo.png" alt="Linux">
+        <h2>لینوکس</h2>
+        <select id="linux-versions"></select>
+        <button onclick="downloadSelected('linux')">دانلود</button>
+      </div>
+    </div>
+
+    <div class="auto-download">
+      <button onclick="autoDownload()">📥 دانلود خودکار</button>
+    </div>
+
+    <div class="guide">
+      <h3>راهنما</h3>
+      <p>📌 دکمه دانلود خودکار، دستگاه شما را تشخیص داده و آخرین نسخه را دانلود می‌کند.</p>
+      <p>📌 برای انتخاب V7 یا V8 در اندروید: به تنظیمات تلگرام → درباره بروید و معماری پردازنده (ABI) گوشی خود را ببینید.</p>
+    </div>
   </div>
 
-  <footer>
-    <p>سازنده: <a href="https://t.me/MahdiAGM0" target="_blank">@MahdiAGM0</a> — تلگرام: <a href="https://t.me/Academii73" target="_blank">@Academii73</a></p>
-    <p><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify GitHub Releases</a></p>
-  </footer>
-</div>
-
-<script>
-/* CONFIG */
-const REPO_OWNER = "hiddify";
-const REPO_NAME = "hiddify-next";
-const GITHUB_API = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases`;
-/* Logos from user's repo */
-const LOGO_BASE = "https://raw.githubusercontent.com/Academivpn73/Hiddfiy_app/main/";
-
-/* state */
-let androidFiles=[], windowsFiles=[], macFiles=[], linuxFiles=[];
-let releasesList = [];
-
-/* helpers */
-function isAndroidAsset(n){ return n.endsWith('.apk'); }
-function isWindowsAsset(n){ return n.endsWith('.exe') || n.endsWith('.msi'); }
-function isMacAsset(n){ return n.endsWith('.dmg') || n.endsWith('.pkg'); }
-function isLinuxAsset(n){ return n.endsWith('.appimage') || n.endsWith('.deb') || n.endsWith('.rpm') || n.endsWith('.tar.gz'); }
-function norm(s){ return (s||'').toString().toLowerCase(); }
-
-function archMatchesAssetName(arch, name){
-  name = norm(name);
-  if(arch==='universal') return name.includes('universal') || name.includes('all') || (!name.includes('arm') && !name.includes('armeabi') && !name.includes('arm64'));
-  if(arch==='v8') return name.includes('arm64') || name.includes('aarch64') || name.includes('arm64-v8a') || name.includes('v8');
-  if(arch==='v7') return name.includes('armeabi') || name.includes('armv7') || name.includes('armeabi-v7a') || name.includes('v7');
-  return false;
-}
-
-function findAssetFor(osFiles, version, exts, arch){
-  const candidates = osFiles.filter(f=>f.version===version);
-  if(!candidates.length) return null;
-  let byArch = candidates;
-  if(arch){
-    const matched = candidates.filter(c=>archMatchesAssetName(arch,c.name));
-    if(matched.length) byArch = matched;
-  }
-  for(const ext of exts){
-    const found = byArch.find(c=>norm(c.name).endsWith(ext) || norm(c.name).includes(ext.replace('.','')));
-    if(found) return found;
-  }
-  return byArch[0]||candidates[0]||null;
-}
-
-/* UI build */
-function makeCard(osKey, logo, title){
-  const card = document.createElement('div'); card.className='card'; card.id=osKey+'-card';
-  const img = document.createElement('img'); img.src=logo; img.alt=title;
-  const h2 = document.createElement('h2'); h2.innerText=title;
-  const sel = document.createElement('select'); sel.id = osKey+'-version';
-  if(osKey==='android'){
-    const archSel = document.createElement('select'); archSel.id='android-arch';
-    archSel.innerHTML = '<option value=\"universal\">Universal</option><option value=\"v7\">V7</option><option value=\"v8\">V8</option>';
-    card.appendChild(img); card.appendChild(h2); card.appendChild(sel); card.appendChild(archSel);
-  } else {
-    card.appendChild(img); card.appendChild(h2); card.appendChild(sel);
-  }
-  const btn = document.createElement('button'); btn.className='download-btn'; btn.innerText='دانلود';
-  btn.addEventListener('click', ()=>{
-    if(osKey==='android') downloadAndroid();
-    else if(osKey==='windows') downloadWindows();
-    else if(osKey==='mac') downloadMac();
-    else if(osKey==='linux') downloadLinux();
-  });
-  card.appendChild(btn);
-  return card;
-}
-
-function buildCards(){
-  const container = document.getElementById('cards');
-  container.innerHTML='';
-  container.appendChild(makeCard('android', LOGO_BASE+'android_logo.png','اندروید'));
-  container.appendChild(makeCard('windows', LOGO_BASE+'windows_logo.png','ویندوز'));
-  container.appendChild(makeCard('mac', LOGO_BASE+'mac_logo.png','مک'));
-  container.appendChild(makeCard('linux', LOGO_BASE+'linux_logo.png','لینوکس'));
-}
-
-/* populate selects */
-function populateVersions(osKey, arr){
-  const sel = document.getElementById(osKey+'-version');
-  sel.innerHTML='';
-  const versions = [...new Set(arr.map(x=>x.version))];
-  if(versions.length===0){ sel.innerHTML='<option value=\"\">فایلی موجود نیست</option>'; return; }
-  // sort by releasesList order (newest first) and set default to first (latest)
-  const sorted = versions.sort((a,b)=> releasesList.indexOf(b) - releasesList.indexOf(a));
-  sorted.forEach((v, idx)=>{ const o=document.createElement('option'); o.value=v; o.text=v; sel.appendChild(o); });
-  // default select first option (latest)
-  if(sel.options.length) sel.selectedIndex = 0;
-}
-
-/* fetch releases */
-async function loadReleases(){
-  try{
-    const res = await fetch(GITHUB_API);
-    if(!res.ok) throw new Error('GitHub API: '+res.status);
-    const data = await res.json();
-    releasesList = data.map(r=>r.tag_name);
-    // reset arrays
-    androidFiles=[]; windowsFiles=[]; macFiles=[]; linuxFiles=[];
-    data.forEach(rel=>{
-      const version = rel.tag_name;
-      rel.assets.forEach(asset=>{
-        const name = asset.name || '';
-        const url = asset.browser_download_url;
-        const item = {version, name, url};
-        const lower = name.toLowerCase();
-        if(isAndroidAsset(lower)) androidFiles.push(item);
-        else if(isWindowsAsset(lower)) windowsFiles.push(item);
-        else if(isMacAsset(lower)) macFiles.push(item);
-        else if(isLinuxAsset(lower)) linuxFiles.push(item);
-      });
-    });
-    // build UI and populate
-    buildCards();
-    populateVersions('android', androidFiles);
-    populateVersions('windows', windowsFiles);
-    populateVersions('mac', macFiles);
-    populateVersions('linux', linuxFiles);
-  }catch(err){
-    console.error(err);
-    alert('خطا در دریافت اطلاعات از GitHub: '+err.message);
-  }
-}
-
-/* download handlers */
-function downloadAndroid(){
-  const version = document.getElementById('android-version').value;
-  const arch = document.getElementById('android-arch').value;
-  const asset = findAssetFor(androidFiles, version, ['.apk'], arch);
-  if(asset) window.location.href = asset.url;
-  else alert('فایلی برای این نسخه/معماری پیدا نشد');
-}
-function downloadWindows(){
-  const version = document.getElementById('windows-version').value;
-  const asset = findAssetFor(windowsFiles, version, ['.exe','.msi','.zip'], null);
-  if(asset) window.location.href = asset.url;
-  else alert('فایلی برای این نسخه پیدا نشد');
-}
-function downloadMac(){
-  const version = document.getElementById('mac-version').value;
-  const asset = findAssetFor(macFiles, version, ['.dmg','.pkg','.zip'], null);
-  if(asset) window.location.href = asset.url;
-  else alert('فایلی برای این نسخه پیدا نشد');
-}
-function downloadLinux(){
-  const version = document.getElementById('linux-version').value;
-  const asset = findAssetFor(linuxFiles, version, ['.appimage','.deb','.rpm','.tar.gz','.zip'], null);
-  if(asset) window.location.href = asset.url;
-  else alert('فایلی برای این نسخه پیدا نشد');
-}
-
-/* auto download */
-function autoDownload(){
-  const ua = navigator.userAgent.toLowerCase();
-  if(ua.includes('android')){
-    const latest = document.getElementById('android-version').value;
-    let arch = 'universal';
-    if(ua.includes('arm64')||ua.includes('aarch64')) arch='v8';
-    else if(ua.includes('armeabi')||ua.includes('armv7')) arch='v7';
-    const asset = findAssetFor(androidFiles, latest, ['.apk'], arch) || findAssetFor(androidFiles, latest, ['.apk'], 'universal');
-    if(asset) window.location.href = asset.url; else alert('فایل اندروید پیدا نشد');
-  } else if(ua.includes('win')){
-    const latest = document.getElementById('windows-version').value;
-    const asset = findAssetFor(windowsFiles, latest, ['.exe','.msi','.zip'], null);
-    if(asset) window.location.href = asset.url; else alert('فایل ویندوز پیدا نشد');
-  } else if(ua.includes('mac')||ua.includes('iphone')||ua.includes('ipad')){
-    const latest = document.getElementById('mac-version').value;
-    const asset = findAssetFor(macFiles, latest, ['.dmg','.pkg','.zip'], null);
-    if(asset) window.location.href = asset.url; else alert('فایل مک پیدا نشد');
-  } else {
-    const latest = document.getElementById('linux-version').value;
-    const asset = findAssetFor(linuxFiles, latest, ['.appimage','.deb','.rpm','.tar.gz','.zip'], null);
-    if(asset) window.location.href = asset.url; else alert('فایل لینوکس پیدا نشد');
-  }
-}
-
-/* modal behavior: always show on load; require click to close */
-document.getElementById('introAccept').addEventListener('click', ()=>{
-  document.getElementById('introModal').style.display='none';
-  document.getElementById('mainContent').removeAttribute('aria-hidden');
-});
-// if page loads and modal exists, keep it visible until accept
-window.addEventListener('load', ()=>{
-  // bind autoBtn
-  document.getElementById('autoBtn').addEventListener('click', autoDownload);
-  // init releases
-  loadReleases();
-});
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
