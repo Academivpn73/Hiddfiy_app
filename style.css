@@ -1,116 +1,19 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Vazir", sans-serif;
-}
-
-body, html {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
-  direction: rtl;
-}
-
-.background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-.title {
-  text-align: center;
-  color: white;
-  margin-top: 20px;
-  font-size: 2rem;
-}
-
-.device-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.device-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 15px;
-  text-align: center;
-  color: white;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.device-card img {
-  width: 60px;
-  margin-bottom: 10px;
-}
-
-.device-card h2 {
-  margin-bottom: 10px;
-}
-
-.device-card select, .device-card button {
-  margin: 5px 0;
-  padding: 5px;
-  border-radius: 8px;
-}
-
-.auto-download {
-  text-align: center;
-  margin: 20px;
-}
-
-.auto-download button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.guide {
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 15px;
-  margin: 20px;
-  border-radius: 10px;
-}
-
-.overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.overlay-content {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-  color: white;
-}
-
-.overlay-content a {
-  color: #00aaff;
-  text-decoration: none;
-}
-
-.hidden {
-  display: none;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Tahoma,Arial,sans-serif}
+html,body{height:100%;direction:rtl;color:#fff;background:#111}
+#bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:99}
+.modal-inner{background:rgba(255,255,255,0.06);backdrop-filter:blur(8px);padding:18px;border-radius:12px;text-align:center;max-width:720px}
+.modal a{color:#00e5ff;text-decoration:none;font-weight:700}
+.modal .modal-actions{margin-top:12px;display:flex;gap:10px;justify-content:center}
+.btn{display:inline-block;padding:8px 14px;border-radius:8px;border:none;background:#20c997;color:#fff;text-decoration:none;cursor:pointer}
+.btn.secondary{background:#6c757d}
+.hidden{display:none}
+header{padding:14px;text-align:center;background:rgba(0,0,0,0.25);backdrop-filter:blur(4px)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding:18px}
+.card{background:rgba(255,255,255,0.04);padding:16px;border-radius:12px;backdrop-filter:blur(6px);text-align:center}
+.card img{width:72px;height:72px;object-fit:contain;margin-bottom:10px}
+select{width:90%;padding:8px;margin:8px;border-radius:8px;background:rgba(0,0,0,0.3);color:#fff;border:none}
+.card button{margin-top:8px;padding:10px 12px;border-radius:8px;border:none;background:#198754;color:#fff;cursor:pointer;width:90%}
+.guide{padding:16px;margin:16px;background:rgba(0,0,0,0.4);border-radius:10px}
+footer{text-align:center;padding:12px;color:#ccc}
+@media(max-width:600px){.card img{width:56px;height:56px}}
