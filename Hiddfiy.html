@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Hiddfiy Downloader</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دانلود Hiddify VPN</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ویدیو بکگراند -->
-  <video autoplay muted loop id="bg-video">
+  <!-- ویدیو بکگراند با fallback تصویر -->
+  <video autoplay muted loop id="bg-video" playsinline>
     <source src="Bak_Hiddfiy.mp4" type="video/mp4">
-    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
   </video>
+  <div id="bg-fallback"></div>
 
-  <!-- مودال معرفی کانال (نمایش هر بار) -->
+  <!-- مودال معرفی کانال -->
   <div id="introModal" class="modal">
-    <div class="modal-inner">
+    <div class="modal-content">
       <h2>𝙊𝙒𝙉𝙀𝙍 ↴ <a href="https://t.me/Puriya73" target="_blank">@Puriya73</a></h2>
-      <p>📢 در این کانال هدف ما فراهم کردن اتصال پایدار و سریع به اینترنت و ارائه اکانت‌های اختصاصی است.</p>
-      <p>گروه: <a href="https://t.me/Academi_team" target="_blank">@Academi_team</a> — پشتیبانی: <a href="https://t.me/Academii_support" target="_blank">@Academii_support</a></p>
-      <div class="modal-actions">
-        <a class="btn" href="https://t.me/Puriya73" target="_blank">عضویت در کانال</a>
-        <button id="modalClose" class="btn secondary">تأیید</button>
-      </div>
+      <p>📢 در این کانال هدف ما اتصال پایدار شما به اینترنت و پاسخگویی سریع با اکانت‌های اختصاصی است.</p>
+      <p><a href="https://t.me/Academi_team" target="_blank">𝙂𝙍𝙊𝙐𝙋: @Academi_team</a></p>
+      <p><a href="https://t.me/Academii_support" target="_blank">𝙎𝙪𝙥𝙥𝙤𝙧𝙩: @Academii_support</a></p>
+      <button id="modalClose">تأیید</button>
     </div>
   </div>
 
   <main id="mainContent" class="hidden">
     <header>
-      <nav><a href="#android">اندروید</a> | <a href="#windows">ویندوز</a> | <a href="#mac">مک</a> | <a href="#linux">لینوکس</a></nav>
+      <h1>📥 دانلود Hiddify VPN</h1>
+      <nav>
+        <a href="#android">اندروید</a>
+        <a href="#windows">ویندوز</a>
+        <a href="#mac">مک</a>
+        <a href="#linux">لینوکس</a>
+      </nav>
     </header>
 
-    <section class="cards" id="cards">
-      <!-- کارت‌ها توسط JS ساخته می‌شوند -->
+    <section class="auto-download">
+      <button id="autoDownloadBtn">📲 دانلود خودکار</button>
     </section>
+
+    <section class="cards" id="cards"></section>
 
     <section class="guide">
       <h3>راهنما</h3>
-      <p>دکمه دانلود خودکار دستگاه شما را تشخیص می‌دهد و آخرین نسخه مناسب را دانلود می‌کند. برای اندروید، V7 یا V8 را مطابق معماری گوشی خود انتخاب کنید.</p>
+      <p><strong>دانلود خودکار:</strong> دستگاه شما تشخیص داده شده و آخرین نسخه مناسب دانلود می‌شود.</p>
+      <p><strong>اندروید V7 یا V8:</strong> برای فهمیدن معماری گوشی، به تنظیمات تلگرام (پایین صفحه درباره برنامه) یا مشخصات گوشی مراجعه کنید.</p>
     </section>
+
+    <footer>
+      <p>سازنده: <a href="https://t.me/MahdiAGM0" target="_blank">@MahdiAGM0</a></p>
+      <p>تلگرام: <a href="https://t.me/Academii73" target="_blank">@Academii73</a></p>
+    </footer>
   </main>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
